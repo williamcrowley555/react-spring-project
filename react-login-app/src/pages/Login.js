@@ -2,36 +2,25 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import { Redirect } from 'react-router'
 
+const Login = ({ setUser }) => {
 
-const Login = ({setUser}) => {
-
-  
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isLogedIn, setIslogedIn] = useState(false)
-  const submit = async (e) => {
-    e.preventDefault();
-    const data = {
-      email: email,
-      password: password
+  const [loginInfo, setLoginInfo] = useState(
+    {
+      email: '',
+      password: ''
     }
+  )
 
+  const GetAndUpdateUser = () => {
     const config = {
       headers: {
-        'Content-Type': 'application/json'
+        Authorization: localStorage.getItem('tokenType') + localStorage.getItem('token')
       }
-    }
-    
+    };
 
-    axios.post("api/auth/signin", data, config)
+    axios.get('api/users/' + localStorage.getItem('userId'), config)
       .then(
         res => {
-          localStorage.setItem('token', res.data.accessToken)
-          localStorage.setItem('tokenType', res.data.tokenType)
-          //console.log(res.data)
-          localStorage.setItem('userId', res.data.userId)
-          setIslogedIn(true)
           setUser(res.data)
         }
       )
@@ -40,17 +29,34 @@ const Login = ({setUser}) => {
           console.log(err);
         }
       )
+  }
 
-     
-      
+  const [isLogedIn, setIslogedIn] = useState(false)
+
+  const submit = async (e) => {
+    e.preventDefault();
+    axios.post("api/auth/signin", loginInfo)
+      .then(
+        res => {
+          localStorage.setItem('token', res.data.accessToken)
+          localStorage.setItem('tokenType', res.data.tokenType)
+          localStorage.setItem('userId', res.data.userId)
+          setIslogedIn(true)
+          GetAndUpdateUser()
+        }
+      )
+      .catch(
+        err => {
+          console.log(err);
+        }
+      )
   }
 
   if (isLogedIn) {
     return <Redirect to="/" />
-  }
-  return (
+  } else setUser(null)
 
-    
+  return (
     <div className="wrapper fadeInDown">
       <div id="formContent">
 
@@ -60,10 +66,28 @@ const Login = ({setUser}) => {
 
         <form onSubmit={submit} action="/">
           <input type="email" id="login" className="fadeIn second" name="login" placeholder="Email" required
-            onChange={e => setEmail(e.target.value)}
+            onChange={e =>
+              setLoginInfo(
+                prevState => (
+                  {
+                    ...prevState,
+                    email: e.target.value,
+                  }
+                )
+              )
+            }
           />
           <input type="password" id="password" className="fadeIn third" name="password" placeholder="Password" required
-            onChange={e => setPassword(e.target.value)}
+            onChange={e =>
+              setLoginInfo(
+                prevState => (
+                  {
+                    ...prevState,
+                    password: e.target.value
+                  }
+                )
+              )
+            }
           />
           <input type="submit" className="fadeIn fourth" value="Log In" />
         </form>
@@ -74,8 +98,6 @@ const Login = ({setUser}) => {
 
       </div>
     </div>
-
-    
   )
 }
 

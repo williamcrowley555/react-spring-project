@@ -10,7 +10,6 @@ const Nav = ({ user, setUser }) => {
 
   let buttons;
   if (user) {
-    console.log('logedin')
     buttons = (
       <ul className="navbar-nav me-auto mb-2 mb-md-0">
         <li className="nav-item">
@@ -19,9 +18,7 @@ const Nav = ({ user, setUser }) => {
       </ul>
     )
   } else {
-    console.log('logedout')
     buttons = (
-      
       <ul className="navbar-nav me-auto mb-2 mb-md-0">
         <li className="nav-item">
           <Link to="/login" className="nav-link active" aria-current="page">Login</Link>
