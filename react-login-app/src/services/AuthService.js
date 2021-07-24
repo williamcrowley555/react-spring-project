@@ -1,9 +1,15 @@
 import axios from "axios";
 
-const API_URL = 'https://localhost:8082/api/auth';
+const AUTH_API_BASE_URL = "http://localhost:8082/create-web-service/api/auth";
 
-class AuthService{
-    login(username, password){
+class AuthService {
+  signin(userLoginInfo) {
+    return axios.post(AUTH_API_BASE_URL + "/signin", userLoginInfo);
+  }
 
-    }
+  signup(userRegisterInfo) {
+    return axios.post(AUTH_API_BASE_URL + "/signup", userRegisterInfo);
+  }
 }
+
+export default new AuthService();
