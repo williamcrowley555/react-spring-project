@@ -5,8 +5,13 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
 
-axios.defaults.headers.common["Authorization"] =
-  localStorage.getItem("tokenType") + localStorage.getItem("token");
+axios.interceptors.request.use((config) => {
+  const token =
+    localStorage.getItem("tokenType") + localStorage.getItem("token");
+  config.headers.Authorization = token;
+
+  return config;
+});
 
 ReactDOM.render(
   <React.StrictMode>

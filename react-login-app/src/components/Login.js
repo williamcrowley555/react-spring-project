@@ -5,6 +5,7 @@ import AuthService from "../services/AuthService";
 import UserService from "../services/UserService";
 
 const Login = ({ user, setUser }) => {
+  const [error, setError] = useState(null);
   const [loginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
@@ -16,7 +17,7 @@ const Login = ({ user, setUser }) => {
         setUser(res.data);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err.response.data.errors);
       });
   };
 
@@ -30,7 +31,7 @@ const Login = ({ user, setUser }) => {
         updateLoggedUser();
       })
       .catch((err) => {
-        console.log(err.response.data);
+        setError(err.response.data.message);
       });
   };
 
@@ -42,8 +43,11 @@ const Login = ({ user, setUser }) => {
         <div className="fadeIn first">
           <img src={UserIcon} id="icon" alt="User Icon" />
         </div>
+        {error && (<div className="alert alert-danger mx-4" role="alert">
+            {error}
+        </div>)}
 
-        <form onSubmit={submit} action="/">
+        <form onSubmit={submit}  >
           <input
             type="email"
             id="login"

@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import UserIcon from "../images/login-form-icon.png";
+import successfullIcon from "../images/green-tick.png";
 import AuthService from "../services/AuthService";
 
 const Register = () => {
+  const [error, setError] = useState(null);
+  const [isRegistered, setisRegistered] = useState(false)
   const [registerInfo, setRegisterInfo] = useState({
     firstName: "",
     lastName: "",
@@ -17,18 +20,31 @@ const Register = () => {
     AuthService.signup(registerInfo)
       .then((res) => {
         console.log(res);
+        setisRegistered(true)
       })
       .catch((err) => {
-        console.log(err.response.data);
+        setError(err.response.data.message);
       });
   };
-
-  return (
+ 
+  return isRegistered ? (
     <div className="wrapper fadeInDown">
       <div id="formContent">
         <div className="fadeIn first">
-          <img src={UserIcon} id="icon" alt="User Icon" />
+          <img className="mt-4" src={successfullIcon} id="success-icon" alt="User Icon" />
+          <h2 className="text-success py-2"> Registered successfully </h2>
         </div>
+      </div>
+    </div>
+  ) : (
+    <div className="wrapper fadeInDown">
+      <div id="formContent">
+        <div className="fadeIn first">
+          <img src={UserIcon} id="icon" alt="User Icon"/>
+        </div>
+        {error && (<div className="alert alert-danger mx-4" role="alert">
+            {error}
+        </div>)}
 
         <form onSubmit={submit}>
           <div className="row px-3">

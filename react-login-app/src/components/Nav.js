@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Nav = ({ user, setUser }) => {
-  const handdleLogout = () => {
+  const handleLogout = () => {
     localStorage.clear();
     setUser(null);
   };
@@ -14,7 +14,7 @@ const Nav = ({ user, setUser }) => {
         <li className="nav-item">
           <Link
             to="/"
-            onClick={handdleLogout}
+            onClick={handleLogout}
             className="nav-link active"
             aria-current="page"
           >
