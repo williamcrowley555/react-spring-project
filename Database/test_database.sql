@@ -140,9 +140,6 @@ COPY public.roles (id, name, role_id) FROM stdin;
 1	ROLE_USER	Bv8jl8kT4Pg00a2xLNSn6hOqnOb7Qb
 2	ROLE_ADMIN	EPNGkY069YhZpOI7OnuzbdYieAymiH
 3	ROLE_MODERATOR	1LYdVrl6LkOOmFnKPEq8hAqnxfOUxM
-5	ROLE_USER	uUznj9WwKjlT2pXeQ5Pnog5hd4C3l1
-6	ROLE_ADMIN	QUCHSQOXYUL9gu7R6t1BT26IqGMERZ
-7	ROLE_MODERATOR	i2jnYfIV3dUtgzfMSQPQOIHhljQutr
 \.
 
 
@@ -170,8 +167,6 @@ COPY public.users (id, email, encrypted_password, first_name, last_name, user_id
 2	lucifer@gmail.com	$2a$10$GwofgX7pvHYelocrh5EPueQ5Pb5Kz6cGM4kib4bZ55wFIgjyGxos2	Ren	Lucifer	DTfxy1trsrn2NTvw4gfCgQtXpdLFba
 3	ken123@gmail.com	$2a$10$b0V13mwvGTtMqQtr4DR4UuDqOaJ2zRlBYnuYWfUoglrmbziI6kBSC	Ken	Kaneki	S7ovM5jGVsHp1WakRXRZ8xqHcB7vOO
 5	john@gmail.com	$2a$10$dTxgMAftUPi4.sZkPTPuJ.yAmkzRya4dTfgvOzkNZQnzwlvGYsX8u	John	Smith	bQUJifDEWzoZfu15j3hIWJDQAzJoM5
-9	jon@gmail.com	$2a$10$W3OHgAAaRC9lMxr1GrD0ueAbK7BeWW7VUKcIwlrOYVcvz/Ut1Lyoq	John	Smith	AyUAKm7JJOAJFY5TA6MddWp5XuXA3J
-10	jonz@gmail.com	$2a$10$thPux0i0uVPPPV4vYlo7jeWJWZ.OVo7XInA1dFam46eIixM7fbWyC	John	Smith	k6yJWTFrH1xswEtpleOi5F7XuHQ6zV
 \.
 
 

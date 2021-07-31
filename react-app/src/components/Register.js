@@ -6,7 +6,7 @@ import AuthService from "../services/AuthService";
 
 const Register = () => {
   const [error, setError] = useState(null);
-  const [isRegistered, setisRegistered] = useState(false)
+  const [isRegistered, setisRegistered] = useState(false);
   const [registerInfo, setRegisterInfo] = useState({
     firstName: "",
     lastName: "",
@@ -20,18 +20,23 @@ const Register = () => {
     AuthService.signup(registerInfo)
       .then((res) => {
         console.log(res);
-        setisRegistered(true)
+        setisRegistered(true);
       })
       .catch((err) => {
         setError(err.response.data.message);
       });
   };
- 
+
   return isRegistered ? (
     <div className="wrapper fadeInDown">
       <div id="formContent">
         <div className="fadeIn first">
-          <img className="mt-4" src={successfullIcon} id="success-icon" alt="User Icon" />
+          <img
+            className="mt-4"
+            src={successfullIcon}
+            id="success-icon"
+            alt="User Icon"
+          />
           <h2 className="text-success py-2"> Registered successfully </h2>
         </div>
       </div>
@@ -40,11 +45,13 @@ const Register = () => {
     <div className="wrapper fadeInDown">
       <div id="formContent">
         <div className="fadeIn first">
-          <img src={UserIcon} id="icon" alt="User Icon"/>
+          <img src={UserIcon} id="icon" alt="User Icon" />
         </div>
-        {error && (<div className="alert alert-danger mx-4" role="alert">
+        {error && (
+          <div className="alert alert-danger mx-4" role="alert">
             {error}
-        </div>)}
+          </div>
+        )}
 
         <form onSubmit={submit}>
           <div className="row px-3">
@@ -57,7 +64,6 @@ const Register = () => {
                   name="firstName"
                   placeholder="First Name"
                   required
-                  pattern="^([A-Za-z]+[,.]?[ ]?|[A-Za-z]+['-]?)+$"
                   title="Special characters and numbers are not allowed"
                   //onChange={e => setFirstName(e.target.value)}
                   onChange={(e) =>
@@ -78,7 +84,6 @@ const Register = () => {
                   name="lastName"
                   placeholder="Last Name"
                   required
-                  pattern="^([A-Za-z]+[,.]?[ ]?|[A-Za-z]+['-]?)+$"
                   title="Special characters and numbers are not allowed"
                   //onChange={e => setLastName(e.target.value)}
                   onChange={(e) =>
