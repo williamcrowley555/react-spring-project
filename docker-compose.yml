@@ -36,10 +36,7 @@ services:
     container_name: react-container
     build: ./react-app  # Specify the directory of the Dockerfile
     ports:
-      - "80:80"
-    environment:
-      - appURL=localhost:80
-      - appPort=80
+      - "3000:3000"
     depends_on:
       - spring
     networks:
