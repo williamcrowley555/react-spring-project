@@ -3,34 +3,53 @@ services:
   db:
     image: postgres:latest
     container_name: postgres-container
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin123
       - POSTGRES_DB=test_database
-    ports:
-      - "5432:5432"
     volumes:
       - ./Database/test_database.sql:/docker-entrypoint-initdb.d/test_database.sql
       - ./pgdata:/var/lib/postgresql/data
     restart: always
+    networks:
+      - spring
 
   spring:
     container_name: spring-container
     build: ./create-web-service  # Specify the directory of the Dockerfile
     ports:
       - "8082:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/test_database
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin123
     depends_on:
       - db
     restart: always
+    networks:
+      - spring
+      - react
 
   react:
     container_name: react-container
     build: ./react-app  # Specify the directory of the Dockerfile
     ports:
       - "80:80"
+    environment:
+      - appURL=localhost:80
+      - appPort=80
     depends_on:
       - spring
+    networks:
+      - react
     stdin_open: true
     tty: true
+
 volumes:
   db:
+
+networks:
+  spring:
+  react:
