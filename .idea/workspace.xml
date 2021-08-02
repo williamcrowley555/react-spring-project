@@ -2,45 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17203714-0284-44ea-8c7d-858ef6f7fb63" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/create-web-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/create-web-service/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/create-web-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/create-web-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/PG_VERSION" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/PG_VERSION" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/base/1/PG_VERSION" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/1/PG_VERSION" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/base/13394/PG_VERSION" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/13394/PG_VERSION" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/base/13395/PG_VERSION" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/13395/PG_VERSION" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pgdata/base/13395/pg_internal.init" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pgdata/base/16384/1247" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/1247" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/base/16384/1249" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/1249" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/base/16384/1249_fsm" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/1249_fsm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pgdata/base/16384/1259" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/1259" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pgdata/base/16384/16385" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/16385" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pgdata/base/16384/16390" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/16390" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pgdata/base/16384/16393" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/16393" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/base/16384/16403" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/16403" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pgdata/base/16384/16399" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/16399" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pgdata/base/16384/16405" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/16405" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pgdata/base/16384/16407" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/16407" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pgdata/base/16384/16409" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/16409" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pgdata/base/16384/2606" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/2606" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pgdata/base/16384/2608" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/2608" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/base/16384/2608_fsm" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/2608_fsm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pgdata/base/16384/2610" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/2610" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pgdata/base/16384/2620" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/2620" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/base/16384/2658" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/2658" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/base/16384/2662" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/2662" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/base/16384/2663" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/2663" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/base/16384/PG_VERSION" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/PG_VERSION" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pgdata/base/16384/pg_internal.init" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/base/16384/pg_internal.init" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pgdata/global/pg_control" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/global/pg_control" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pgdata/global/pg_internal.init" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/global/pg_internal.init" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/pg_hba.conf" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/pg_hba.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/pg_ident.conf" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/pg_ident.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/pg_stat/db_0.stat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/pg_stat/db_16384.stat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/pg_stat/global.stat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pgdata/pg_stat_tmp/db_0.stat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pgdata/pg_stat_tmp/db_13395.stat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pgdata/pg_stat_tmp/db_16384.stat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pgdata/pg_stat_tmp/global.stat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pgdata/pg_wal/000000010000000000000001" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/pg_wal/000000010000000000000001" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/postgresql.auto.conf" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/postgresql.auto.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/postgresql.conf" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/postgresql.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pgdata/postmaster.opts" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/postmaster.opts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-app/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/react-app/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/react-app/src/components/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/react-app/src/components/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pgdata/pg_xact/0000" beforeDir="false" afterPath="$PROJECT_DIR$/pgdata/pg_xact/0000" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pgdata/postmaster.pid" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
