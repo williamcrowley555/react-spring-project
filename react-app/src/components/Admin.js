@@ -9,20 +9,20 @@ const Admin = ({ user, setUser }) => {
     if (localStorage.getItem("role") !== "ROLE_ADMIN")
     return <Redirect to="/" />
     return (
-        <div id="viewport">
+        <div id="viewport" className="">
         
             <AdminSidebar />
 
             <BrowserRouter>   
                 <Switch>
                     <Route
-                    path="/Admin"
+                    path="/admin"
                     exact
                     component={() => <Dashboard user={user} setUser={setUser} />}
                     />
 
                     <Route
-                    path="/Admin/Users"
+                    path="/admin/users"
                     exact
                     component={Users}
                     />

@@ -38,7 +38,7 @@ const Nav = ({ user, setUser }) => {
       <ul className="navbar-nav me-auto mb-2 mb-md-0">
         <li className="nav-item">
           <Link
-            to="/Admin"
+            to="/admin"
             className="nav-link active"
             aria-current="page"
           >
@@ -76,7 +76,7 @@ const Nav = ({ user, setUser }) => {
     );
   }
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav id='nav_bar' className="navbar navbar-expand-md navbar-dark bg-dark">
       <div className="container-fluid">
         <Link to="/" className="navbar-brand">
           {" "}

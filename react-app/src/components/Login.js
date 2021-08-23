@@ -39,11 +39,12 @@ const Login = ({ user, setUser }) => {
 
   if (user) {
     if (localStorage.getItem("role") === "ROLE_ADMIN")
-      return <Redirect to="/Admin" />
+      return <Redirect to="/admin" />
     return <Redirect to="/" />
   } 
   return (
-    <div className="wrapper fadeInDown">
+    <div className="wrapper fadeInDown pt-5">
+      <div className="pt-5">
       <div id="formContent">
         <div className="fadeIn first">
           <img src={UserIcon} id="icon" alt="User Icon" />
@@ -90,6 +91,8 @@ const Login = ({ user, setUser }) => {
           </a>
         </div>
       </div>
+      </div>
+      
     </div>
   )
 };

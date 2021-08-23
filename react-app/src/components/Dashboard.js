@@ -13,7 +13,7 @@ const Dashboard = () => {
                     </ul>
                 </div>
                 </nav>
-                <div className="container-fluid">
+                <div className="container-fluid mt-4">
                 <h1>Admin Dashboard</h1>
                 <p>
                     Make sure to keep all page content within the 

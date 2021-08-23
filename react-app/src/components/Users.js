@@ -96,7 +96,7 @@ const Users = () => {
                     </ul>
                 </div>
                 </nav>
-                <div className="container-fluid">
+                <div className="container-fluid mt-4">
                 <h1>User Manager</h1>
                 </div>
                 <Table title={title} data={userList} columns={columns}/>

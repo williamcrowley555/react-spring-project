@@ -11,7 +11,7 @@ import UserService from "./services/UserService";
 
 const App = () => {
   const [user, setUser] = useState({});
-
+  
   useEffect(() => {
     updateUserState();
   }, []);
@@ -46,13 +46,13 @@ const App = () => {
             />
             <Route path="/register" component={Register} />
             <Route
-              path="/Admin"
+              path="/admin"
               exact
               component={() => <Admin user={user} setUser={setUser} />}
               
             />
             <Route
-              path="/Admin/Users"
+              path="/admin/users"
               exact
               component={() => <Admin user={user} setUser={setUser} />}
               

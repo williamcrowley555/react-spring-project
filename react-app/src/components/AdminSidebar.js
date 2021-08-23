@@ -4,16 +4,16 @@ const AdminSidebar = () => {
     return (
         <div id="sidebar">
                 <header>
-                <a href="/Admin">My App</a>
+                <a href="/admin">My App</a>
                 </header>
                 <ul className="nav">
                 <li>
-                    <a href="/Admin">
+                    <a href="/admin">
                     Dashboard
                     </a>
                 </li>
                 <li>
-                    <a href="/Admin/Users">
+                    <a href="/admin/users">
                     Users Management
                     </a>
                 </li>
