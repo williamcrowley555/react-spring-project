@@ -2,10 +2,12 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Nav from "./components/Nav";
 import Home from "./components/Home";
+import Admin from "./components/Admin";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import React, { useState, useEffect } from "react";
 import UserService from "./services/UserService";
+
 
 const App = () => {
   const [user, setUser] = useState({});
@@ -19,6 +21,7 @@ const App = () => {
       UserService.getUserByUserId(localStorage.getItem("userId"))
         .then((res) => {
           setUser(res.data);
+          
         })
         .catch((err) => {
           console.log(err.response.data);
@@ -42,6 +45,18 @@ const App = () => {
               component={() => <Login user={user} setUser={setUser} />}
             />
             <Route path="/register" component={Register} />
+            <Route
+              path="/Admin"
+              exact
+              component={() => <Admin user={user} setUser={setUser} />}
+              
+            />
+            <Route
+              path="/Admin/Users"
+              exact
+              component={() => <Admin user={user} setUser={setUser} />}
+              
+            />
           </Switch>
         </main>
       </BrowserRouter>

@@ -28,16 +28,21 @@ const Login = ({ user, setUser }) => {
         localStorage.setItem("token", res.data.accessToken);
         localStorage.setItem("tokenType", res.data.tokenType);
         localStorage.setItem("userId", res.data.userId);
+        localStorage.setItem("role", res.data.roles);
         updateLoggedUser();
+        console.log(localStorage.getItem("role"))
       })
       .catch((err) => {
         setError(err.response.data.message);
       });
   };
 
-  return user ? (
-    <Redirect to="/" />
-  ) : (
+  if (user) {
+    if (localStorage.getItem("role") === "ROLE_ADMIN")
+      return <Redirect to="/Admin" />
+    return <Redirect to="/" />
+  } 
+  return (
     <div className="wrapper fadeInDown">
       <div id="formContent">
         <div className="fadeIn first">
@@ -86,7 +91,7 @@ const Login = ({ user, setUser }) => {
         </div>
       </div>
     </div>
-  );
+  )
 };
 
 export default Login;

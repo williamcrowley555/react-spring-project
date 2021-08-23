@@ -6,6 +6,10 @@ class UserService {
     getUserByUserId(userId) {
         return axios.get(USER_API_BASE_URL + "/" + userId);
     }
+
+    getUsers(page, limit) {
+        return axios.get(USER_API_BASE_URL + "?page=" + page + "&lmit=" +limit);
+    }
 }
 
 export default new UserService();

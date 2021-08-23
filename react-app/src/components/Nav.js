@@ -14,6 +14,15 @@ const Nav = ({ user, setUser }) => {
         <li className="nav-item">
           <Link
             to="/"
+            className="nav-link active"
+            aria-current="page"
+          >
+            {user.email}
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link
+            to="/"
             onClick={handleLogout}
             className="nav-link active"
             aria-current="page"
@@ -23,7 +32,34 @@ const Nav = ({ user, setUser }) => {
         </li>
       </ul>
     );
-  } else {
+
+    if (localStorage.getItem("role") === "ROLE_ADMIN")
+    buttons = (
+      <ul className="navbar-nav me-auto mb-2 mb-md-0">
+        <li className="nav-item">
+          <Link
+            to="/Admin"
+            className="nav-link active"
+            aria-current="page"
+          >
+            Admin Page
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link
+            to="/"
+            onClick={handleLogout}
+            className="nav-link active"
+            aria-current="page"
+          >
+            Logout
+          </Link>
+        </li>
+      </ul>
+    );
+    
+  }  else {
     buttons = (
       <ul className="navbar-nav me-auto mb-2 mb-md-0">
         <li className="nav-item">
@@ -40,12 +76,13 @@ const Nav = ({ user, setUser }) => {
     );
   }
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <nav className="navbar navbar-expand-md navbar-dark bg-dark">
       <div className="container-fluid">
         <Link to="/" className="navbar-brand">
           {" "}
           <i className="fas fa-home"></i> Home
         </Link>
+         
         <div>{buttons}</div>
       </div>
     </nav>
