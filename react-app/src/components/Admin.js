@@ -10,11 +10,10 @@ const Admin = ({ user, setUser }) => {
     return <Redirect to="/" />
     return (
         <div id="viewport" className="">
-        
             <AdminSidebar />
-
             <BrowserRouter>   
                 <Switch>
+                    <div className="px-4 pt-3">
                     <Route
                     path="/admin"
                     exact
@@ -25,17 +24,10 @@ const Admin = ({ user, setUser }) => {
                     path="/admin/users"
                     exact
                     component={Users}
-                    />
-
-                     
-
-                     
-                    
-                </Switch>
-               
-            </BrowserRouter>
-            
-            
+                    />            
+                    </div>  
+                </Switch>             
+            </BrowserRouter>  
         </div>
     )
 }

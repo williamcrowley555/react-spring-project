@@ -33,7 +33,7 @@ const App = () => {
     <div className="App">
       <BrowserRouter>
         <Nav user={user} setUser={setUser} />
-        <main className="form-signin">
+        <main className="form-signin pt-5">
           <Switch>
             <Route
               path="/"

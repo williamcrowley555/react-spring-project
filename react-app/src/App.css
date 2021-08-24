@@ -453,12 +453,13 @@ input[type="email"]:placeholder {
   margin: 0 3px;
 }
 
- 
-.dataTables_wrapper .rdt_TableHeadRow{
-  font-size:25px;
+#nav_bar{
+  z-index: 9999;
+  position:fixed;
+  width:100%;
 }
 
-#nav_bar{
+.Modal {
   z-index: 9999;
   position:fixed;
   width:100%;
