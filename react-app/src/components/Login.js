@@ -44,7 +44,6 @@ const Login = ({ user, setUser }) => {
   } 
   return (
     <div className="wrapper fadeInDown pt-5">
-      <div className="pt-5">
       <div id="formContent">
         <div className="fadeIn first">
           <img src={UserIcon} id="icon" alt="User Icon" />
@@ -90,9 +89,7 @@ const Login = ({ user, setUser }) => {
             Forgot Password?
           </a>
         </div>
-      </div>
-      </div>
-      
+      </div>     
     </div>
   )
 };

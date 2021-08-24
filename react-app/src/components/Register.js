@@ -28,8 +28,7 @@ const Register = () => {
   };
 
   return isRegistered ? (
-    <div className="wrapper fadeInDown pt-5">
-      <div className="pt-3">
+    <div className="wrapper fadeInDown pt-3">
         <div id="formContent">
           <div className="fadeIn first">
             <img
@@ -41,11 +40,9 @@ const Register = () => {
             <h2 className="text-success py-2"> Registered successfully </h2>
           </div>
         </div>
-      </div>
     </div>
   ) : (
     <div className="wrapper fadeInDown pt-5">
-      <div className="pt-5">
         <div id="formContent">
           <div className="fadeIn first">
             <img src={UserIcon} id="icon" alt="User Icon" />
@@ -139,7 +136,6 @@ const Register = () => {
             </Link>
           </div>
         </div>
-      </div>
     </div>
   );
 };
