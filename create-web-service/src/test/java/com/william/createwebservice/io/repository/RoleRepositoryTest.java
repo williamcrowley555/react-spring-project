@@ -25,35 +25,35 @@ class RoleRepositoryTest {
     @Autowired
     private RoleRepository roleRepository;
 
-    @Test
-    public void testCreateNewRole() {
-        createNewRole(Role.ROLE_USER);
-        createNewRole(Role.ROLE_ADMIN);
-        createNewRole(Role.ROLE_MODERATOR);
-
-        List<RoleEntity> roles = roleRepository.findAll();
-        roles.forEach(System.out::println);
-    }
-
-    public void createNewRole(Role roleName) {
-        RoleEntity roleEntity = new RoleEntity();
-
-        String publicRoleId = generateRandomString(30);
-        roleEntity.setRoleId(publicRoleId);
-        roleEntity.setName(roleName);
-
-        roleRepository.save(roleEntity);
-    }
-
-    public String generateRandomString(int length) {
-        StringBuilder returnValue = new StringBuilder(length);
-
-        for (int i = 0; i < length; i++) {
-            // Generate random integers in range 0 to length
-            returnValue.append(ALPHABET.charAt(RANDOM.nextInt(ALPHABET.length())));
-        }
-
-        return new String(returnValue);
-    }
+//    @Test
+//    public void testCreateNewRole() {
+//        createNewRole(Role.ROLE_USER);
+//        createNewRole(Role.ROLE_ADMIN);
+//        createNewRole(Role.ROLE_MODERATOR);
+//
+//        List<RoleEntity> roles = roleRepository.findAll();
+//        roles.forEach(System.out::println);
+//    }
+//
+//    public void createNewRole(Role roleName) {
+//        RoleEntity roleEntity = new RoleEntity();
+//
+//        String publicRoleId = generateRandomString(30);
+//        roleEntity.setRoleId(publicRoleId);
+//        roleEntity.setName(roleName);
+//
+//        roleRepository.save(roleEntity);
+//    }
+//
+//    public String generateRandomString(int length) {
+//        StringBuilder returnValue = new StringBuilder(length);
+//
+//        for (int i = 0; i < length; i++) {
+//            // Generate random integers in range 0 to length
+//            returnValue.append(ALPHABET.charAt(RANDOM.nextInt(ALPHABET.length())));
+//        }
+//
+//        return new String(returnValue);
+//    }
 
 }

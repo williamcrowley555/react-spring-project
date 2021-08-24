@@ -88,4 +88,18 @@ public class UserDTO implements Serializable {
     public void setRoles(Set<RoleDTO> roles) {
         this.roles = roles;
     }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id=" + id +
+                ", userId='" + userId + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", encryptedPassword='" + encryptedPassword + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
 }

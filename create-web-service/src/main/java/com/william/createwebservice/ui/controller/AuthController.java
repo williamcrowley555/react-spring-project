@@ -1,5 +1,7 @@
 package com.william.createwebservice.ui.controller;
 
+import com.william.createwebservice.redis.publisher.RedisMessagePublisher;
+import com.william.createwebservice.redis.subscriber.RedisMessageSubscriber;
 import com.william.createwebservice.security.UserDetailsImpl;
 import com.william.createwebservice.security.jwt.JwtUtils;
 import com.william.createwebservice.service.RoleService;
@@ -46,6 +48,9 @@ public class AuthController {
 
     @Autowired
     private JwtUtils jwtUtils;
+
+    @Autowired
+    private RedisMessagePublisher messagePublisher;
 
     @Operation(summary = "Sign in with email and password")
     @ApiResponses(value = {
@@ -122,8 +127,14 @@ public class AuthController {
         }
 
         userDTO.setRoles(roles);
-        userService.createUser(userDTO);
+        UserDTO redisUser = userService.createUser(userDTO);
+        messagePublisher.publish(redisUser.toString());
 
         return ResponseEntity.ok(new SuccessMessage(new Date(), "User registered successfully!"));
+    }
+
+    @GetMapping("/messages")
+    public List<String> getMessages() {
+        return RedisMessageSubscriber.messageList;
     }
 }
