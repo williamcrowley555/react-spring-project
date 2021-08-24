@@ -132,9 +132,4 @@ public class AuthController {
 
         return ResponseEntity.ok(new SuccessMessage(new Date(), "User registered successfully!"));
     }
-
-    @GetMapping("/messages")
-    public List<String> getMessages() {
-        return RedisMessageSubscriber.messageList;
-    }
 }

@@ -1,5 +1,6 @@
 package com.william.createwebservice.ui.controller;
 
+import com.william.createwebservice.redis.subscriber.RedisMessageSubscriber;
 import com.william.createwebservice.service.UserService;
 import com.william.createwebservice.shared.dto.UserDTO;
 import com.william.createwebservice.ui.model.request.UserDetailsRequest;
@@ -123,5 +124,10 @@ public class UserController {
         returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
 
         return ResponseEntity.ok(returnValue);
+    }
+
+    @GetMapping("/messages")
+    public List<String> getMessages() {
+        return RedisMessageSubscriber.messageList;
     }
 }
