@@ -11,7 +11,7 @@ const Register = () => {
     firstName: "",
     lastName: "",
     email: "",
-    password: "",
+    password: ""
   });
 
   const submit = async (e) => {

@@ -119,6 +119,11 @@ public class AuthController {
                         roles.add(modRole);
 
                         break;
+                    case "staff":
+                        RoleDTO staffRole = roleService.getRoleByName(Role.ROLE_STAFF);
+                        roles.add(staffRole);
+
+                        break;
                     default:
                         RoleDTO userRole = roleService.getRoleByName(Role.ROLE_USER);
                         roles.add(userRole);

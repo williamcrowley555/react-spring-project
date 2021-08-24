@@ -30,6 +30,7 @@ class RoleRepositoryTest {
 //        createNewRole(Role.ROLE_USER);
 //        createNewRole(Role.ROLE_ADMIN);
 //        createNewRole(Role.ROLE_MODERATOR);
+//        createNewRole(Role.ROLE_STAFF);
 //
 //        List<RoleEntity> roles = roleRepository.findAll();
 //        roles.forEach(System.out::println);

@@ -3,7 +3,7 @@ import { Redirect } from "react-router";
 import AdminSidebar from "./AdminSidebar";
 import Dashboard from "./Dashboard";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Users from "./Users";
+import Staff from "./Staffs";
 
 const Admin = ({ user, setUser }) => {
     if (localStorage.getItem("role") !== "ROLE_ADMIN")
@@ -21,9 +21,9 @@ const Admin = ({ user, setUser }) => {
                     />
 
                     <Route
-                    path="/admin/users"
+                    path="/admin/staffs"
                     exact
-                    component={Users}
+                    component={Staff}
                     />            
                     </div>  
                 </Switch>             

@@ -52,7 +52,7 @@ const App = () => {
               
             />
             <Route
-              path="/admin/users"
+              path="/admin/staffs"
               exact
               component={() => <Admin user={user} setUser={setUser} />}
               

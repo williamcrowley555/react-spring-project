@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import Table from './Table'
 import UserService from "../services/UserService";
 import Modal from "./Modal"
-const Users = () => {
-    const [userList, setUserList] = useState([
+const Staffs = () => {
+    const [staffList, setStaffList] = useState([
         {
             id:"",
             firstName:"",
@@ -19,7 +19,7 @@ const Users = () => {
           if (localStorage.getItem("userId") && localStorage.getItem("token")) {
             UserService.getUsers(page, limit)
               .then((res) => {
-                setUserList(res.data)      
+                setStaffList(res.data)    // tam thoi sua   
               })
               .catch((err) => {
                 console.log(err.response.data);
@@ -86,16 +86,16 @@ const Users = () => {
     return (
         <div id="content">
                 <div className="container-fluid">
-                <h1>User Manager</h1>
+                <h1>Staff Manager</h1>
                   <button type="button" className="btn btn-success mt-2" onClick={openModal}>
-                    <i className="fas fa-plus"></i> Add An User
+                    <i className="fas fa-plus"></i> Add Staff
                   </button>
                   <Modal id='Modal' showModal={showModal} setShowModal={setShowModal} selectedData={selectedData} />
                 </div>
-                <Table data={userList} columns={columns}/>
+                <Table data={staffList} columns={columns}/>
         </div>
     )
 }
 
-export default Users
+export default Staffs
 

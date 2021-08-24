@@ -13,8 +13,8 @@ const AdminSidebar = () => {
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/users">
-                    Users Management
+                    <a href="/admin/staffs">
+                    Staff Management
                     </a>
                 </li>
                  

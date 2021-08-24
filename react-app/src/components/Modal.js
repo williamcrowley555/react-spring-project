@@ -7,7 +7,8 @@ const Background = styled.div`
     width: 100%;
     height: 100%;
     position: fixed;
-    display: inline-block;
+    transform: translate(-10%, -20%);
+    display: flex;
     justify-content: center;
     align-items: center;   
     z-index: 9999;
@@ -110,7 +111,7 @@ const Modal = ({ showModal, setShowModal, selectedData }) => {
                 <p>Get exclusive access to our next launch.</p>
                 <button>Join Now</button> */}
                 <div >
-                  <h1> User Info </h1>
+                  <h1> Staff Info </h1>
                   <form>
                     <div className="row px-3">
                     <div className="col-md-6">
