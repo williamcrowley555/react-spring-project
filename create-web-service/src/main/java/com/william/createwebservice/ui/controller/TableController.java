@@ -1,10 +1,10 @@
 package com.william.createwebservice.ui.controller;
 
-import com.william.createwebservice.service.BookingService;
+import com.william.createwebservice.service.TableService;
 import com.william.createwebservice.shared.dto.BookingDTO;
-import com.william.createwebservice.shared.dto.UserDTO;
+import com.william.createwebservice.shared.dto.TableDTO;
 import com.william.createwebservice.ui.model.response.BookingResponse;
-import com.william.createwebservice.ui.model.response.UserResponse;
+import com.william.createwebservice.ui.model.response.TableResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -14,29 +14,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-
 @RestController
-@RequestMapping(path = "api/booking")
-public class BookingController {
+@RequestMapping(path = "api/table")
+public class TableController {
     @Autowired
-    private BookingService bookingService;
+    private TableService tableService;
 
-    @Operation(summary = "Get a booking by its id booking")
+    @Operation(summary = "Get a table by its id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Found the booking",
+            @ApiResponse(responseCode = "200", description = "Found the table",
                     content = { @Content(mediaType = "application/json") }),
             @ApiResponse(responseCode = "400", description = "Invalid id supplied",
                     content = @Content),
-            @ApiResponse(responseCode = "404", description = "Booking not found",
+            @ApiResponse(responseCode = "404", description = "Table not found",
                     content = @Content) })
     @GetMapping(path = "/{id}")
-    public ResponseEntity<?> getBookingId(@PathVariable String id) {
+    public ResponseEntity<?> getTableById(@PathVariable Long id) {
         ModelMapper modelMapper = new ModelMapper();
-        BookingDTO bookingDTO = bookingService.getBookingByBookingId(id);
-        BookingResponse returnValue = modelMapper.map(bookingDTO, BookingResponse.class);
+        TableDTO tableDTO = tableService.getTableById(id);
+        TableResponse returnValue = modelMapper.map(tableDTO, TableResponse.class);
         return ResponseEntity.ok(returnValue);
     }
-
 
 }

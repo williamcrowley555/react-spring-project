@@ -20,15 +20,19 @@ public class BookingServiceImpl implements BookingService {
     private BookingRepository bookingRepository;
 
     @Override
-    public BookingDTO getById(Long id) {
+    public BookingDTO getBookingById(Long id) {
         Optional<BookingEntity> optional = bookingRepository.findById(id);
+        if (optional.isEmpty()) {
+            throw new BookingServiceException("Id is not found");
+        }
+        ModelMapper modelMapper = new ModelMapper();
         BookingEntity bookingEntity = optional.get();
-        System.out.println(bookingEntity);
-        return null;
+        BookingDTO returnValue = modelMapper.map(bookingEntity, BookingDTO.class);
+        return returnValue;
     }
 
     @Override
-    public BookingDTO getBookingID(String id_booking) {
+    public BookingDTO getBookingByBookingId(String id_booking) {
         Optional<BookingEntity> optional = bookingRepository.findByBookingId(id_booking);
         if (optional.isEmpty()) {
             throw new BookingServiceException("Id booking is not found");
@@ -36,7 +40,6 @@ public class BookingServiceImpl implements BookingService {
         ModelMapper modelMapper = new ModelMapper();
         BookingEntity bookingEntity = optional.get();
         BookingDTO returnValue = modelMapper.map(bookingEntity, BookingDTO.class);
-        System.out.println(bookingEntity);
         return returnValue;
     }
 

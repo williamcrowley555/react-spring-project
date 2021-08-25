@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Service
 public interface BookingService {
-    BookingDTO getById(Long id);
-    BookingDTO getBookingID(String booking_id);
+    BookingDTO getBookingById(Long id);
+    BookingDTO getBookingByBookingId(String booking_id);
 
 }
