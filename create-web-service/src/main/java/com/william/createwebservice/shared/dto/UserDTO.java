@@ -15,7 +15,7 @@ public class UserDTO implements Serializable {
     private String email;
     private String password;
     private String encryptedPassword;
-    private Set<RoleDTO> roles = new HashSet<>();
+    private Set<String> roles = new HashSet<>();
 
     public UserDTO() {
     }
@@ -81,11 +81,11 @@ public class UserDTO implements Serializable {
         this.encryptedPassword = encryptedPassword;
     }
 
-    public Set<RoleDTO> getRoles() {
+    public Set<String> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<RoleDTO> roles) {
+    public void setRoles(Set<String> roles) {
         this.roles = roles;
     }
 

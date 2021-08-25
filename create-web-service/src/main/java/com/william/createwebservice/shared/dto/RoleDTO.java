@@ -1,6 +1,6 @@
 package com.william.createwebservice.shared.dto;
 
-import com.william.createwebservice.ui.model.response.Role;
+import com.william.createwebservice.shared.enums.Role;
 
 public class RoleDTO {
 

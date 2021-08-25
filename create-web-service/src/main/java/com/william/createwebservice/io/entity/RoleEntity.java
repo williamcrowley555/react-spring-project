@@ -1,6 +1,6 @@
 package com.william.createwebservice.io.entity;
 
-import com.william.createwebservice.ui.model.response.Role;
+import com.william.createwebservice.shared.enums.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

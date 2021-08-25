@@ -1,12 +1,10 @@
 package com.william.createwebservice.ui.controller;
 
 import com.william.createwebservice.redis.publisher.RedisMessagePublisher;
-import com.william.createwebservice.redis.subscriber.RedisMessageSubscriber;
 import com.william.createwebservice.security.UserDetailsImpl;
 import com.william.createwebservice.security.jwt.JwtUtils;
 import com.william.createwebservice.service.RoleService;
 import com.william.createwebservice.service.UserService;
-import com.william.createwebservice.shared.dto.RoleDTO;
 import com.william.createwebservice.shared.dto.UserDTO;
 import com.william.createwebservice.ui.model.request.UserDetailsRequest;
 import com.william.createwebservice.ui.model.request.UserLoginRequest;
@@ -27,9 +25,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -100,38 +96,6 @@ public class AuthController {
         ModelMapper modelMapper = new ModelMapper();
         UserDTO userDTO = modelMapper.map(signUpRequest, UserDTO.class);
 
-        Set<String> strRoles = signUpRequest.getRoles();
-        Set<RoleDTO> roles = new HashSet<>();
-
-        if (strRoles == null || strRoles.isEmpty()) {
-            RoleDTO userRole = roleService.getRoleByName(Role.ROLE_USER);
-            roles.add(userRole);
-        } else {
-            strRoles.stream().forEach((role) -> {
-                switch (role) {
-                    case "admin":
-                        RoleDTO adminRole = roleService.getRoleByName(Role.ROLE_ADMIN);
-                        roles.add(adminRole);
-
-                        break;
-                    case "mod":
-                        RoleDTO modRole = roleService.getRoleByName(Role.ROLE_MODERATOR);
-                        roles.add(modRole);
-
-                        break;
-                    case "staff":
-                        RoleDTO staffRole = roleService.getRoleByName(Role.ROLE_STAFF);
-                        roles.add(staffRole);
-
-                        break;
-                    default:
-                        RoleDTO userRole = roleService.getRoleByName(Role.ROLE_USER);
-                        roles.add(userRole);
-                }
-            });
-        }
-
-        userDTO.setRoles(roles);
         UserDTO redisUser = userService.createUser(userDTO);
         messagePublisher.publish(redisUser.toString());
 

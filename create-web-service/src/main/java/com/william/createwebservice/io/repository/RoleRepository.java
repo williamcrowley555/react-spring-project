@@ -1,7 +1,7 @@
 package com.william.createwebservice.io.repository;
 
 import com.william.createwebservice.io.entity.RoleEntity;
-import com.william.createwebservice.ui.model.response.Role;
+import com.william.createwebservice.shared.enums.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

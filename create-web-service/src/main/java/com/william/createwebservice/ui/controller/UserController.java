@@ -126,6 +126,28 @@ public class UserController {
         return ResponseEntity.ok(returnValue);
     }
 
+    @Operation(summary = "Get a list of users by role name")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Returns a list of users by role name",
+                    content = { @Content(mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", description = "No users found",
+                    content = @Content) })
+    @GetMapping(path = "/roles/{roleName}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MODERATOR')")
+    public ResponseEntity<?> getUsersByRoles(@PathVariable String roleName) {
+        List<UserResponse> returnValue = new ArrayList<>();
+
+        List<UserDTO> users = userService.getUsersByRoleName(roleName);
+
+        ModelMapper modelMapper = new ModelMapper();
+        for (UserDTO userDTO : users) {
+            UserResponse userModel = modelMapper.map(userDTO, UserResponse.class);
+            returnValue.add(userModel);
+        }
+
+        return ResponseEntity.ok(returnValue);
+    }
+
     @GetMapping("/messages")
     public List<String> getMessages() {
         return RedisMessageSubscriber.messageList;

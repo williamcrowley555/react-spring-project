@@ -1,4 +1,4 @@
-package com.william.createwebservice.ui.model.response;
+package com.william.createwebservice.shared.enums;
 
 public enum Role {
     ROLE_USER,

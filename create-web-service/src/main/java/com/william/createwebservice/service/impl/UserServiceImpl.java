@@ -1,6 +1,7 @@
 package com.william.createwebservice.service.impl;
 
 import com.william.createwebservice.exception.UserServiceException;
+import com.william.createwebservice.io.entity.RoleEntity;
 import com.william.createwebservice.io.entity.UserEntity;
 import com.william.createwebservice.io.repository.UserRepository;
 import com.william.createwebservice.security.UserDetailsImpl;
@@ -18,15 +19,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleServiceImpl roleService;
 
     @Autowired
     private Utils utils;
@@ -46,8 +48,24 @@ public class UserServiceImpl implements UserService {
         Page<UserEntity> userPage = userRepository.findAll(pageableRequest);
         List<UserEntity> users = userPage.getContent();
 
+        ModelMapper modelMapper = new ModelMapper();
         for (UserEntity userEntity : users) {
-            ModelMapper modelMapper = new ModelMapper();
+            UserDTO userDTO = modelMapper.map(userEntity, UserDTO.class);
+            returnValue.add(userDTO);
+        }
+
+        return returnValue;
+    }
+
+    @Override
+    public List<UserDTO> getUsersByRoleName(String roleName) {
+        List<UserDTO> returnValue = new ArrayList<>();
+
+        Set<RoleEntity> role = roleService.convertToEntity(Set.of(roleName));
+        List<UserEntity> users = (List<UserEntity>) userRepository.findByRolesIn(role);
+
+        ModelMapper modelMapper = new ModelMapper();
+        for (UserEntity userEntity : users) {
             UserDTO userDTO = modelMapper.map(userEntity, UserDTO.class);
             returnValue.add(userDTO);
         }
@@ -97,6 +115,7 @@ public class UserServiceImpl implements UserService {
         String publicUserId = utils.generateUserId(30);
         userEntity.setUserId(publicUserId);
         userEntity.setEncryptedPassword(passwordEncoder.encode(user.getPassword()));
+        userEntity.setRoles(roleService.convertToEntity(user.getRoles()));
 
         UserEntity storedUserDetails = userRepository.save(userEntity);
 
