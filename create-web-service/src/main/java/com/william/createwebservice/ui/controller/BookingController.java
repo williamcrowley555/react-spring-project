@@ -22,11 +22,6 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
-    @GetMapping(path = "/{id}")
-    public void getUser(@PathVariable Long id) {
-        BookingDTO bookingDTO = bookingService.getById(id);
-    }
-
     @Operation(summary = "Get a booking by its id booking")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the booking",
