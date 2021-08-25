@@ -43,5 +43,14 @@ public class BookingServiceImpl implements BookingService {
         return returnValue;
     }
 
+    @Override
+    public BookingDTO getBookedDate(LocalDate localDate) {
+        Optional<BookingEntity> optional = bookingRepository.findByBookedDate(localDate);
+        ModelMapper modelMapper = new ModelMapper();
+        BookingEntity bookingEntity = optional.get();
+        BookingDTO returnValue = modelMapper.map(bookingEntity, BookingDTO.class);
+        return returnValue;
+    }
+
 
 }
