@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect} from "react";
 import Table from './Table'
 import UserService from "../services/UserService";
 import Modal from "./Modal"
@@ -15,18 +15,19 @@ const Staffs = () => {
     const [showModal, setShowModal] = useState(false)
     console.log(selectedData);
     useEffect(() => {
-        const getUserList = (page, limit) => {
+        const role = "staff"
+        const getStaffList = (role) => {
           if (localStorage.getItem("userId") && localStorage.getItem("token")) {
-            UserService.getUsers(page, limit)
+            UserService.getUserByUserRoleName(role)
               .then((res) => {
-                setStaffList(res.data)    // tam thoi sua   
+                setStaffList(res.data)  
               })
               .catch((err) => {
                 console.log(err.response.data);
               });
           }
         };
-        getUserList(1, 10)
+        getStaffList(role)
     }, [showModal]);
     
     const onEdit = (record) => {

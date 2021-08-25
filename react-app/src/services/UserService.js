@@ -7,8 +7,16 @@ class UserService {
         return axios.get(USER_API_BASE_URL + "/" + userId);
     }
 
+    getUserByUserRoleName(roleName) {
+        return axios.get(USER_API_BASE_URL + "/roles/"+ roleName);
+    }
+
     getUsers(page, limit) {
         return axios.get(USER_API_BASE_URL + "?page=" + page + "&lmit=" +limit);
+    }
+
+    addUser(userData){
+        return axios.post(USER_API_BASE_URL, userData);
     }
 }
 

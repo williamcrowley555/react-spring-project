@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, useCallback } from 'react';
 import styled from "styled-components"
 import { MdClose } from 'react-icons/md';
 import { useSpring, animated } from 'react-spring';
-import AuthService from "../services/AuthService";
+import UserService from '../services/UserService';
 
 const Background = styled.div`
     width: 100%;
@@ -61,23 +61,21 @@ const CloseModalButton = styled(MdClose)`
 `;
 
 const Modal = ({ showModal, setShowModal, selectedData}) => {
+    
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
-    const [staffInfo, setStaffInfo] = useState({
-    });
-    const [addData, setAddData] = useState({
+    const [staffData, setStaffData] = useState({
       firstName: "",
       lastName: "",
       email: "",
       password: "",
-      role: ["staff"]
+      roles: ["staff"]
     });
-
     let button = "Edit"
     let message = null
+    
     if (Object.keys(selectedData).length === 0) button = "Add"
-    console.log(staffInfo)
-    if (selectedData === {}) button = "Add"
+
     const modalRef = useRef();
     const animation = useSpring({
         config: {
@@ -112,7 +110,14 @@ const Modal = ({ showModal, setShowModal, selectedData}) => {
     );
     
     useEffect(() => {
-      setStaffInfo(selectedData)
+      setStaffData(selectedData);
+      if (Object.keys(selectedData).length === 0) setStaffData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        roles: ["staff"]
+      })
       setError(null)
       setSuccess(null)
     }, [selectedData]);
@@ -121,16 +126,18 @@ const Modal = ({ showModal, setShowModal, selectedData}) => {
       e.preventDefault();
       if (button === "Add")
       {
-      AuthService.signup(addData)
+      UserService.addUser(staffData)
         .then((res) => {
-          console.log(res);
           setSuccess("Staff Added Successfully");
         })
         .catch((err) => {
           setError(err.response.data.message);
         }); 
+      } else if (button === "Edit")
+      {
+        console.log("Edit data: " + staffData.firstName + " " + staffData.lastName + " "+ staffData.email)
       }
-      
+
       setShowModal(true)
     };
     if (error) 
@@ -166,13 +173,13 @@ const Modal = ({ showModal, setShowModal, selectedData}) => {
                           type="text"
                           id="firstName"
                           name="firstName"
-                          value={selectedData.firstName}
+                          value={staffData.firstName}
                           placeholder="First Name"
                           required
                           title="Special characters and numbers are not allowed"
                           onChange={(e) =>
-                            setAddData({
-                              ...addData,
+                            setStaffData({
+                              ...staffData,
                               firstName: e.target.value,
                             })
                           }
@@ -186,14 +193,14 @@ const Modal = ({ showModal, setShowModal, selectedData}) => {
                           type="text"
                           id="lastName"
                           name="lastName"
-                          value={selectedData.lastName}
+                          value={staffData.lastName}
                           placeholder="Last Name"
                           required
                           title="Special characters and numbers are not allowed"
                           //onChange={e => setLastName(e.target.value)}
                           onChange={(e) =>
-                            setAddData({
-                              ...addData,
+                            setStaffData({
+                              ...staffData,
                               lastName: e.target.value,
                             })
                           }
@@ -206,13 +213,13 @@ const Modal = ({ showModal, setShowModal, selectedData}) => {
                     type="email"
                     id="login"
                     name="login"
-                    value={selectedData.email}
+                    value={staffData.email}
                     placeholder="Email"
                     required
                     //onChange={e => setEmail(e.target.value)}
                     onChange={(e) =>
-                      setAddData({
-                        ...addData,
+                      setStaffData({
+                        ...staffData,
                         email: e.target.value,
                       })
                     }
@@ -226,8 +233,8 @@ const Modal = ({ showModal, setShowModal, selectedData}) => {
                     required
                     //onChange={e => setPassword(e.target.value)}
                     onChange={(e) =>
-                      setAddData({
-                        ...addData,
+                      setStaffData({
+                        ...staffData,
                         password: e.target.value,
                       })
                     }
