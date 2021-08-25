@@ -1,7 +1,8 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import styled from "styled-components"
 import { MdClose } from 'react-icons/md';
 import { useSpring, animated } from 'react-spring';
+import AuthService from "../services/AuthService";
 
 const Background = styled.div`
     width: 100%;
@@ -59,10 +60,23 @@ const CloseModalButton = styled(MdClose)`
   z-index: 10;
 `;
 
-const Modal = ({ showModal, setShowModal, selectedData }) => {
+const Modal = ({ showModal, setShowModal, selectedData}) => {
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
+    const [staffInfo, setStaffInfo] = useState({
+    });
+    const [addData, setAddData] = useState({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      role: ["staff"]
+    });
+
     let button = "Edit"
+    let message = null
     if (Object.keys(selectedData).length === 0) button = "Add"
-    console.log(selectedData)
+    console.log(staffInfo)
     if (selectedData === {}) button = "Add"
     const modalRef = useRef();
     const animation = useSpring({
@@ -96,23 +110,55 @@ const Modal = ({ showModal, setShowModal, selectedData }) => {
         },
         [keyPress]
     );
-
     
-   
+    useEffect(() => {
+      setStaffInfo(selectedData)
+      setError(null)
+      setSuccess(null)
+    }, [selectedData]);
+
+    const submit = async (e) => {
+      e.preventDefault();
+      if (button === "Add")
+      {
+      AuthService.signup(addData)
+        .then((res) => {
+          console.log(res);
+          setSuccess("Staff Added Successfully");
+        })
+        .catch((err) => {
+          setError(err.response.data.message);
+        }); 
+      }
+      
+      setShowModal(true)
+    };
+    if (error) 
+    {
+      message = (
+    <div className="alert alert-danger mx-4" role="alert">
+    {error}
+    </div>)
+    }
+    if (success) 
+      {
+      message = (                
+      <div className="alert alert-success mx-4" role="alert">
+      {success}
+      </div>
+      )
+      }
+    
     return showModal ? (
       
         <Background onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
             <ModalWrapper showModal={showModal}>
-            
-            
               <ModalContent>
-                {/* <h1>Are you ready?</h1>
-                <p>Get exclusive access to our next launch.</p>
-                <button>Join Now</button> */}
                 <div >
                   <h1> Staff Info </h1>
-                  <form>
+                   { message }
+                  <form onSubmit={submit} >
                     <div className="row px-3">
                     <div className="col-md-6">
                       <div className="form-group">
@@ -124,7 +170,12 @@ const Modal = ({ showModal, setShowModal, selectedData }) => {
                           placeholder="First Name"
                           required
                           title="Special characters and numbers are not allowed"
-                          //onChange={e => setFirstName(e.target.value)}
+                          onChange={(e) =>
+                            setAddData({
+                              ...addData,
+                              firstName: e.target.value,
+                            })
+                          }
                           
                         />
                       </div>
@@ -140,7 +191,12 @@ const Modal = ({ showModal, setShowModal, selectedData }) => {
                           required
                           title="Special characters and numbers are not allowed"
                           //onChange={e => setLastName(e.target.value)}
-                          
+                          onChange={(e) =>
+                            setAddData({
+                              ...addData,
+                              lastName: e.target.value,
+                            })
+                          }
                         />
                       </div>
                     </div>
@@ -154,7 +210,27 @@ const Modal = ({ showModal, setShowModal, selectedData }) => {
                     placeholder="Email"
                     required
                     //onChange={e => setEmail(e.target.value)}
-                    
+                    onChange={(e) =>
+                      setAddData({
+                        ...addData,
+                        email: e.target.value,
+                      })
+                    }
+                  />
+
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                    //onChange={e => setPassword(e.target.value)}
+                    onChange={(e) =>
+                      setAddData({
+                        ...addData,
+                        password: e.target.value,
+                      })
+                    }
                   />
                   
                   <button type="submit">{button}</button>
