@@ -9,4 +9,5 @@ import java.time.LocalDate;
 @Service
 public interface BookingService {
     BookingDTO getById(Long id);
+    BookingDTO getBookingID(String booking_id);
 }

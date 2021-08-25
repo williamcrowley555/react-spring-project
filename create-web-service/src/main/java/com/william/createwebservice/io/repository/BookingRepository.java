@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface BookingRepository extends JpaRepository<BookingEntity,Long> {
     @Override
     Optional<BookingEntity> findById(Long id);
+
+    Optional<BookingEntity> findByBookingId(String id_booking);
 }

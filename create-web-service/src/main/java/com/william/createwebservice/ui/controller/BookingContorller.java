@@ -24,4 +24,9 @@ public class BookingContorller {
     public void getUser(@PathVariable Long id) {
         BookingDTO bookingDTO = bookingService.getById(id);
     }
+
+    @GetMapping(path = "/test/{id}")
+    public void getBookingID(@PathVariable String id) {
+        BookingDTO bookingDTO = bookingService.getBookingID(id);
+    }
 }

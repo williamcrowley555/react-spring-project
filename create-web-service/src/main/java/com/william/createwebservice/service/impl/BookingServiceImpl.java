@@ -17,10 +17,17 @@ public class BookingServiceImpl implements BookingService {
     @Autowired
     private BookingRepository bookingRepository;
 
-
     @Override
     public BookingDTO getById(Long id) {
         Optional<BookingEntity> optional = bookingRepository.findById(id);
+        BookingEntity bookingEntity = optional.get();
+        System.out.println(bookingEntity);
+        return null;
+    }
+
+    @Override
+    public BookingDTO getBookingID(String booking_id) {
+        Optional<BookingEntity> optional = bookingRepository.findByBookingId(booking_id);
         BookingEntity bookingEntity = optional.get();
         System.out.println(bookingEntity);
         return null;
