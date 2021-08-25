@@ -44,11 +44,11 @@ public class UserResponse {
 
     @Override
     public String toString() {
-        return "UserResponse{" +
-                "userId='" + userId + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return "{" +
+                "\"userId\":\"" + userId +
+                "\", \"firstName\":\"" + firstName +
+                "\", \"lastName\":\"" + lastName +
+                "\", \"email\":\"" + email +
+                "\"}";
     }
 }

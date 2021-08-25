@@ -9,18 +9,6 @@ const Staffs = () => {
   var sock = new SockJS("http://localhost:8082/create-web-service/stomp-endpoint");
   let stompClient = Stomp.over(sock);
 
-  sock.onopen = () => {
-    console.log("OPEN NOW");
-  };
-
-  stompClient.connect({}, function (frame) {
-    console.log("Connected: " + frame);
-    stompClient.subscribe("/topic/users", function (message) {
-      console.log(message);
-      // setStaffList([...staffList, {id: message.}])
-    });
-  });
-
   const [staffList, setStaffList] = useState([
     {
       id: "",
@@ -50,6 +38,20 @@ const Staffs = () => {
     };
     getStaffList(role);
   }, [showModal]);
+
+  sock.onopen = () => {
+    console.log("OPEN");
+  };
+
+  stompClient.connect({}, function (frame) {
+    console.log("Connected: " + frame);
+    stompClient.subscribe("/topic/users", function (message) {
+      console.log(message.body);
+      var staff = JSON.parse(message.body);
+      console.log(staff);
+      setStaffList([...staffList, staff]);
+    });
+  });
 
   const onEdit = (record) => {
     setSelectedData(record);
