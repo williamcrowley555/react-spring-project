@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import Table from './Table'
 import UserService from "../services/UserService";
 import Modal from "./Modal"
@@ -27,8 +27,7 @@ const Staffs = () => {
           }
         };
         getUserList(1, 10)
-    }, []);
-    
+    }, [showModal]);
     
     const onEdit = (record) => {
         setSelectedData(record)
@@ -90,7 +89,7 @@ const Staffs = () => {
                   <button type="button" className="btn btn-success mt-2" onClick={openModal}>
                     <i className="fas fa-plus"></i> Add Staff
                   </button>
-                  <Modal id='Modal' showModal={showModal} setShowModal={setShowModal} selectedData={selectedData} />
+                  <Modal id='Modal' showModal={showModal} setShowModal={setShowModal} selectedData={selectedData}/>
                 </div>
                 <Table data={staffList} columns={columns}/>
         </div>
