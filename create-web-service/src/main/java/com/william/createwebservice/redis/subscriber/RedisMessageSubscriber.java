@@ -25,7 +25,7 @@ public class RedisMessageSubscriber implements MessageListener {
     public void onMessage(Message message, byte[] pattern) {
         messageList.add(message.toString());
         logger.info("Consumed event {}", message);
-        simpMessagingTemplate.convertAndSend(WS_MESSAGE_TRANSFER_DESTINATION, message.toString());
+        this.simpMessagingTemplate.convertAndSend(WS_MESSAGE_TRANSFER_DESTINATION, message.toString());
     }
 
 }

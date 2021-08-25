@@ -1,6 +1,7 @@
 package com.william.createwebservice.redis.config;
 
 import com.william.createwebservice.redis.subscriber.RedisMessageSubscriber;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
@@ -15,6 +16,9 @@ import java.util.UUID;
 
 @Configuration
 public class RedisConfig {
+
+    @Autowired
+    RedisMessageSubscriber redisSubscriber;
 
     @Bean
     JedisConnectionFactory jedisConnectionFactory() {
@@ -39,7 +43,7 @@ public class RedisConfig {
 
     @Bean
     MessageListenerAdapter messageListenerAdapter() {
-        return new MessageListenerAdapter(new RedisMessageSubscriber(), "onMessage");
+        return new MessageListenerAdapter(redisSubscriber, "onMessage");
     }
 
     @Bean

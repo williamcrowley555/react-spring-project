@@ -1,5 +1,6 @@
 package com.william.createwebservice.ui.controller;
 
+import com.william.createwebservice.redis.publisher.RedisMessagePublisher;
 import com.william.createwebservice.redis.subscriber.RedisMessageSubscriber;
 import com.william.createwebservice.service.UserService;
 import com.william.createwebservice.shared.dto.UserDTO;
@@ -19,13 +20,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+//@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600, allowCredentials = "true", allowedHeaders = "*",
+//        methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT}
+//)
 @RestController
 @RequestMapping(path = "api/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RedisMessagePublisher messagePublisher;
 
     @Operation(summary = "Get a list of users based on page and limit parameters")
     @ApiResponses(value = {
@@ -81,6 +87,8 @@ public class UserController {
 
         UserDTO createdUser = userService.createUser(userDTO);
         UserResponse returnValue = modelMapper.map(createdUser, UserResponse.class);
+
+        messagePublisher.publish(returnValue.toString());
 
         return ResponseEntity.ok(returnValue);
     }

@@ -28,7 +28,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+//@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -44,9 +44,6 @@ public class AuthController {
 
     @Autowired
     private JwtUtils jwtUtils;
-
-    @Autowired
-    private RedisMessagePublisher messagePublisher;
 
     @Operation(summary = "Sign in with email and password")
     @ApiResponses(value = {
@@ -95,9 +92,6 @@ public class AuthController {
         // Create new user's account
         ModelMapper modelMapper = new ModelMapper();
         UserDTO userDTO = modelMapper.map(signUpRequest, UserDTO.class);
-
-        UserDTO redisUser = userService.createUser(userDTO);
-        messagePublisher.publish(redisUser.toString());
 
         return ResponseEntity.ok(new SuccessMessage(new Date(), "User registered successfully!"));
     }
