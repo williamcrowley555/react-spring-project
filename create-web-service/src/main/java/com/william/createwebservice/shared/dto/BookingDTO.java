@@ -12,7 +12,7 @@ public class BookingDTO {
     private String bookingId;
     private int guestNumber;
     private boolean status;
-    private TableDTO tables;
+   // private TableDTO tables;
 
     public BookingDTO() {
     }
@@ -65,13 +65,13 @@ public class BookingDTO {
         this.status = status;
     }
 
-    public TableDTO getTables() {
-        return tables;
-    }
-
-    public void setTables(TableDTO tables) {
-        this.tables = tables;
-    }
+//    public TableDTO getTables() {
+//        return tables;
+//    }
+//
+//    public void setTables(TableDTO tables) {
+//        this.tables = tables;
+//    }
 
     @Override
     public String toString() {
@@ -82,7 +82,7 @@ public class BookingDTO {
                 ", bookingId='" + bookingId + '\'' +
                 ", guestNumber=" + guestNumber +
                 ", status=" + status +
-                ", tables=" + tables +
+                //", tables=" + tables +
                 '}';
     }
 }

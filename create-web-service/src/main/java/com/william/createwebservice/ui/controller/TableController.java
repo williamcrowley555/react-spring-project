@@ -36,4 +36,8 @@ public class TableController {
         return ResponseEntity.ok(returnValue);
     }
 
+    @PostMapping("/postTestTable")
+    public void postBody(@RequestBody TableDTO model) {
+        tableService.save(model);
+    }
 }

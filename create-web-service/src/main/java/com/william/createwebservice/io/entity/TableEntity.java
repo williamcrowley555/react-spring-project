@@ -3,6 +3,7 @@ package com.william.createwebservice.io.entity;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -24,12 +25,12 @@ public class TableEntity implements Serializable{
     @OneToOne(mappedBy="tables")
     private BookingEntity bookings;
 
-    @NotBlank
-    @Size(max = 2)
+    @NotNull
+   // @Size(max = 2)
     @Column(nullable = false, length = 2)
     private int seat;
 
-    @NotBlank
+    @NotNull
     @Column(nullable = false)
     private boolean status;
 

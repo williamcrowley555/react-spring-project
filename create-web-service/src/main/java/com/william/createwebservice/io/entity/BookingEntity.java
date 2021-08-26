@@ -24,7 +24,6 @@ public class BookingEntity implements Serializable{
     @Column(nullable = false, length = 30)
     private String bookingId;
 
-
     @OneToOne
     @JoinColumn(name = "table_id")
     private TableEntity tables;
