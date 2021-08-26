@@ -2,16 +2,17 @@ package com.william.createwebservice.service.impl;
 
 import com.william.createwebservice.exception.BookingServiceException;
 import com.william.createwebservice.io.entity.BookingEntity;
-import com.william.createwebservice.io.entity.RoleEntity;
 import com.william.createwebservice.io.entity.TableEntity;
+import com.william.createwebservice.io.entity.UserEntity;
 import com.william.createwebservice.io.repository.BookingRepository;
 import com.william.createwebservice.io.repository.TableRepository;
 import com.william.createwebservice.service.BookingService;
 import com.william.createwebservice.shared.dto.BookingDTO;
-import com.william.createwebservice.shared.dto.RoleDTO;
+import com.william.createwebservice.shared.dto.UserDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.william.createwebservice.shared.Utils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,6 +23,9 @@ import java.util.Optional;
 public class BookingServiceImpl implements BookingService {
     @Autowired
     private BookingRepository bookingRepository;
+
+    @Autowired
+    private Utils utils;
 
 
     @Override
@@ -60,6 +64,19 @@ public class BookingServiceImpl implements BookingService {
             System.out.println(list);
         }
         return list;
+    }
+
+    @Override
+    public BookingDTO createBooking(BookingDTO booking) {
+
+        ModelMapper modelMapper = new ModelMapper();
+        BookingEntity bookingEntity = modelMapper.map(booking, BookingEntity.class);
+
+        String publicBookingId = utils.generateUserId(30);
+        bookingEntity.setBookingId(publicBookingId);
+        BookingEntity storedBookingDetails = bookingRepository.save(bookingEntity);
+        BookingDTO returnValue = modelMapper.map(storedBookingDetails, BookingDTO.class);
+        return returnValue;
     }
 
 

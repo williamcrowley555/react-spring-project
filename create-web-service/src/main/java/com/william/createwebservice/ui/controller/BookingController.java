@@ -3,6 +3,7 @@ package com.william.createwebservice.ui.controller;
 import com.william.createwebservice.service.BookingService;
 import com.william.createwebservice.shared.dto.BookingDTO;
 import com.william.createwebservice.shared.dto.UserDTO;
+import com.william.createwebservice.ui.model.request.UserDetailsRequest;
 import com.william.createwebservice.ui.model.response.BookingResponse;
 import com.william.createwebservice.ui.model.response.UserResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -39,9 +40,11 @@ public class BookingController {
     }
 
 
+
     @GetMapping(path = "/date")
     public void getBookingd() {
         LocalDate localDate = LocalDate.of(2020,04,03);
+        System.out.println(localDate);
         bookingService.getListBookedDate(localDate);
     }
 }
