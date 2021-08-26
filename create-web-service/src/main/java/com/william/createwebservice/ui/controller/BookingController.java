@@ -38,4 +38,10 @@ public class BookingController {
         return ResponseEntity.ok(returnValue);
     }
 
+
+    @GetMapping(path = "/date")
+    public void getBookingd() {
+        LocalDate localDate = LocalDate.of(2020,04,03);
+        bookingService.getListBookedDate(localDate);
+    }
 }

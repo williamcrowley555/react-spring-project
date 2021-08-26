@@ -6,11 +6,12 @@ import com.william.createwebservice.ui.model.response.Role;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public interface BookingService {
     BookingDTO getBookingById(Long id);
     BookingDTO getBookingByBookingId(String booking_id);
-    BookingDTO getBookedDate(LocalDate localDate);
+    List<BookingDTO> getListBookedDate(LocalDate localDate);
 
 }

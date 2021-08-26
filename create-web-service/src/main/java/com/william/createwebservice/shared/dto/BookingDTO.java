@@ -12,7 +12,7 @@ public class BookingDTO {
     private String bookingId;
     private int guestNumber;
     private boolean status;
-    private TableEntity tables;
+    private TableDTO tables;
 
     public BookingDTO() {
     }
@@ -65,11 +65,11 @@ public class BookingDTO {
         this.status = status;
     }
 
-    public TableEntity getTables() {
+    public TableDTO getTables() {
         return tables;
     }
 
-    public void setTables(TableEntity tables) {
+    public void setTables(TableDTO tables) {
         this.tables = tables;
     }
 
