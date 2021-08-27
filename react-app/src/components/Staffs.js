@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Table from "./Table";
 import UserService from "../services/UserService";
 import Modal from "./Modal";
-import SockJS from "sockjs-client";
-import Stomp from "stompjs";
+import WebSocketService from "../services/WebSocketService";
 
 const Staffs = () => {
-  var sock = new SockJS("http://localhost:8082/create-web-service/stomp-endpoint");
-  let stompClient = Stomp.over(sock);
+  const stompClient = useRef();
 
   const [staffList, setStaffList] = useState([
     {
-      id: "",
+      userId: "",
       firstName: "",
       lastName: "",
       email: "",
@@ -24,34 +22,41 @@ const Staffs = () => {
   console.log(selectedData);
 
   useEffect(() => {
-    const role = "staff";
-    const getStaffList = (role) => {
-      if (localStorage.getItem("userId") && localStorage.getItem("token")) {
-        UserService.getUserByUserRoleName(role)
-          .then((res) => {
-            setStaffList(res.data);
-          })
-          .catch((err) => {
-            console.log(err.response.data);
-          });
-      }
-    };
-    getStaffList(role);
+    if (!stompClient.current) {
+      console.log("STOMP client resolved to null, connecting...");
+      stompClient.current = WebSocketService.initializeStompClient();
+      connect();
+    } else if (!stompClient.current.connected) {
+      console.log("Connection lost, connecting again...");
+      connect();
+    }
+
+    getStaffList("staff");
   }, [showModal]);
 
-  sock.onopen = () => {
-    console.log("OPEN");
-  };
-
-  stompClient.connect({}, function (frame) {
-    console.log("Connected: " + frame);
-    stompClient.subscribe("/topic/users", function (message) {
-      console.log(message.body);
-      var staff = JSON.parse(message.body);
-      console.log(staff);
-      setStaffList([...staffList, staff]);
+  function connect() {
+    if (!stompClient.current) return;
+    stompClient.current.connect({}, (frame) => {
+      console.log("Connected: " + frame);
+      stompClient.current.subscribe(`/topic/users`, (message) => {
+        console.log("Received message: " + message.body);
+        var staff = JSON.parse(message.body);
+        setStaffList((prevStaffList) => [...prevStaffList, staff]);
+      });
     });
-  });
+  }
+
+  const getStaffList = (role) => {
+    if (localStorage.getItem("userId") && localStorage.getItem("token")) {
+      UserService.getUserByUserRoleName(role)
+        .then((res) => {
+          setStaffList(res.data);
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+        });
+    }
+  };
 
   const onEdit = (record) => {
     setSelectedData(record);
