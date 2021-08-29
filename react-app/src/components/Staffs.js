@@ -32,7 +32,7 @@ const Staffs = () => {
     }
 
     getStaffList("staff");
-  }, [showModal]);
+  }, []);
 
   function connect() {
     if (!stompClient.current) return;
