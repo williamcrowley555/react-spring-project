@@ -2,10 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import Table from "./Table";
 import UserService from "../services/UserService";
 import Modal from "./Modal";
-import WebSocketService from "../services/WebSocketService";
 
 const Staffs = () => {
-  const stompClient = useRef();
 
   const [staffList, setStaffList] = useState([
     {
@@ -22,28 +20,21 @@ const Staffs = () => {
   console.log(selectedData);
 
   useEffect(() => {
-    if (!stompClient.current) {
-      console.log("STOMP client resolved to null, connecting...");
-      stompClient.current = WebSocketService.initializeStompClient();
-      connect();
-    } else if (!stompClient.current.connected) {
-      console.log("Connection lost, connecting again...");
-      connect();
-    }
+    
 
     getStaffList("staff");
   }, []);
 
   function connect() {
-    if (!stompClient.current) return;
-    stompClient.current.connect({}, (frame) => {
-      console.log("Connected: " + frame);
-      stompClient.current.subscribe(`/topic/users`, (message) => {
-        console.log("Received message: " + message.body);
-        var staff = JSON.parse(message.body);
-        setStaffList((prevStaffList) => [...prevStaffList, staff]);
-      });
-    });
+    // if (!stompClient.current) return;
+    // stompClient.current.connect({}, (frame) => {
+    //   console.log("Connected: " + frame);
+    //   stompClient.current.subscribe(`/topic/users`, (message) => {
+    //     console.log("Received message: " + message.body);
+    //     var staff = JSON.parse(message.body);
+    //     setStaffList((prevStaffList) => [...prevStaffList, staff]);
+    //   });
+    // });
   }
 
   const getStaffList = (role) => {

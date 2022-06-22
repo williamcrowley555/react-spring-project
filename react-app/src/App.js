@@ -5,14 +5,31 @@ import Home from "./components/Home";
 import Admin from "./components/Admin";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import UserService from "./services/UserService";
-
+import io from 'socket.io-client';
 
 const App = () => {
   const [user, setUser] = useState({});
-  
+  const socketRef = io('http://localhost:9092/chat?token=abc123', {
+      transports: ['polling', 'websocket']
+    });
+
+    if(!socketRef){
+      console.log('im hể')
+      
+    } else if (!socketRef.connected){
+      console.log("Connection lost, connecting again...");
+    
+    }
+    console.log(socketRef.connected)  
   useEffect(() => {
+    
+  //   socket.on('connect', function () {
+  //     console.log('Connected')
+  // });
+  
+  
     updateUserState();
   }, []);
 

@@ -63,7 +63,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-                                    .antMatchers("/stomp-endpoint/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
