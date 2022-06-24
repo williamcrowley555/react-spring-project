@@ -25,9 +25,17 @@ const App = () => {
 
   newSocket.on("connect", () => {
     console.log(newSocket.connected); // true
-   // newSocket.emit("hello");
+    //newSocket.emit("chat");
+    // var userName;
+    // var message;
+    // var jsonObject = {userName: "user1", message: "Chao ban", actionTime: new Date()};
+    // newSocket.emit('hello', jsonObject);
   });
   
+  newSocket.on("hello", (data) => {
+    console.log(data);
+  });
+
   return () => newSocket.close();
   }, [setSocket]);
 

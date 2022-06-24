@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServerCommandLineRunner implements CommandLineRunner {
 
-    private final SocketIOServer server;
+    static SocketIOServer server = null;
 
     @Autowired
     public ServerCommandLineRunner(SocketIOServer server) {
