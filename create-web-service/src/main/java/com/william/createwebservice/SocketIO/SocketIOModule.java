@@ -7,6 +7,7 @@ import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
+import com.william.createwebservice.shared.dto.UserDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class SocketIOModule {
     private static final Logger log = LoggerFactory.getLogger(SocketIOModule.class);
 
     private final SocketIONamespace namespace;
-    private String roomName = "Room1";
+    private String onUpdateUserList = "on-updateUserList";
 
     @Autowired
     public SocketIOModule(SocketIOServer server) {
@@ -29,7 +30,7 @@ public class SocketIOModule {
         this.namespace.addConnectListener(onConnected());
         this.namespace.addDisconnectListener(onDisconnected());
         this.namespace.addEventListener("chat", SocketIOModule.class, onChatReceived());
-        this.namespace.addEventListener("hello", ChatMessage.class, onHelloReceived());
+        this.namespace.addEventListener("updateUserList", UserDTO.class, onUpdateUserList());
     }
 
     private DataListener<SocketIOModule> onChatReceived() {
@@ -43,12 +44,8 @@ public class SocketIOModule {
         return client -> {
             HandshakeData handshakeData = client.getHandshakeData();
             System.out.println("Connected");
+            client.joinRoom(onUpdateUserList);
 
-            client.joinRoom(roomName);
-            ArrayList<SocketIOClient> newList = new ArrayList<SocketIOClient>(ServerCommandLineRunner.server.getRoomOperations(roomName).getClients());
-            for (SocketIOClient s : newList) {
-                s.sendEvent("hello","Chao ban den voi room 1");
-            }
             log.debug("Client[{}] - Connected to chat module through '{}'", client.getSessionId().toString(), handshakeData.getUrl());
         };
     }
@@ -59,13 +56,15 @@ public class SocketIOModule {
         };
     }
 
-    private DataListener<ChatMessage> onHelloReceived() {
+    private DataListener<UserDTO> onUpdateUserList() {
         return (client, data, ackSender) -> {
             System.out.println(data);
+            ArrayList<SocketIOClient> newList = new ArrayList<SocketIOClient>(
+                    ServerCommandLineRunner.server.getRoomOperations(onUpdateUserList).getClients());
+            for (SocketIOClient s : newList) {
+                    s.sendEvent("updateUserList",data);
+            }
             log.debug("Client[{}] - Received chat message '{}'", client.getSessionId().toString(), data);
-            namespace.getBroadcastOperations().sendEvent("hello", data);
-
         };
     }
-
 }

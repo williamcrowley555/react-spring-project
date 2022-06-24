@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import Table from "./Table";
 import UserService from "../services/UserService";
 import Modal from "./Modal";
+import socket from "../socketIO/socket";
+
 
 const Staffs = () => {
 
@@ -18,26 +20,22 @@ const Staffs = () => {
   const [showModal, setShowModal] = useState(false);
 
   console.log(selectedData);
+  
 
   useEffect(() => {
-    
+    let isUpdated = false
+    socket.on("updateUserList", (user) => {
+      setStaffList((prevStaffList) => [...prevStaffList, user]);
+    });
 
-    getStaffList("staff");
+    getUserList("staff");
+    return () => {
+      isUpdated = true;
+    }
   }, []);
 
-  function connect() {
-    // if (!stompClient.current) return;
-    // stompClient.current.connect({}, (frame) => {
-    //   console.log("Connected: " + frame);
-    //   stompClient.current.subscribe(`/topic/users`, (message) => {
-    //     console.log("Received message: " + message.body);
-    //     var staff = JSON.parse(message.body);
-    //     setStaffList((prevStaffList) => [...prevStaffList, staff]);
-    //   });
-    // });
-  }
 
-  const getStaffList = (role) => {
+  const getUserList = (role) => {
     if (localStorage.getItem("userId") && localStorage.getItem("token")) {
       UserService.getUserByUserRoleName(role)
         .then((res) => {

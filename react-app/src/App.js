@@ -7,37 +7,18 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import React, { useState, useEffect } from "react";
 import UserService from "./services/UserService";
-import io from 'socket.io-client';
+import socket from "./socketIO/socket";
 
 const App = () => {
   const [user, setUser] = useState({});
-  const [socket, setSocket] = useState(null);
- 
+
   useEffect(() => {
-  const hostName = `localhost`
-  const port = 81
-
-  //updateUserState();
-  
-  const newSocket = io(`http://` + hostName + `:` + port + `/chat`, {transports: ['websocket', 'polling', 'flashsocket']});
-  
-  setSocket(newSocket);
-
-  newSocket.on("connect", () => {
-    console.log(newSocket.connected); // true
-    //newSocket.emit("chat");
-    // var userName;
-    // var message;
-    // var jsonObject = {userName: "user1", message: "Chao ban", actionTime: new Date()};
-    // newSocket.emit('hello', jsonObject);
+  updateUserState();
+  socket.on("connect", () => {
+    console.log(socket.connected); // true
   });
   
-  newSocket.on("hello", (data) => {
-    console.log(data);
-  });
-
-  return () => newSocket.close();
-  }, [setSocket]);
+  }, []);
 
   const updateUserState = () => {
     if (localStorage.getItem("userId") && localStorage.getItem("token")) {

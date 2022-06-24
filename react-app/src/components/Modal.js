@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { MdClose } from "react-icons/md";
 import { useSpring, animated } from "react-spring";
 import UserService from "../services/UserService";
+import socket from "../socketIO/socket";
 
 const Background = styled.div`
   width: 100%;
@@ -116,6 +117,8 @@ const Modal = ({ showModal, setShowModal, selectedData }) => {
       });
     setError(null);
     setSuccess(null);
+
+    
   }, [selectedData]);
 
   const submit = async (e) => {
@@ -124,6 +127,7 @@ const Modal = ({ showModal, setShowModal, selectedData }) => {
     if (button === "Add") {
       UserService.addUser(staffData)
         .then((res) => {
+          socket.emit("updateUserList", staffData)
           setSuccess("Staff Added Successfully");
         })
         .catch((err) => {
