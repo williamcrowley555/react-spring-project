@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.EventListener;
+
 @Component
 public class SocketIOModule {
 
@@ -24,6 +26,7 @@ public class SocketIOModule {
         this.namespace.addConnectListener(onConnected());
         this.namespace.addDisconnectListener(onDisconnected());
         this.namespace.addEventListener("chat", SocketIOModule.class, onChatReceived());
+        this.namespace.addEventListener("hello", SocketIOModule.class, onHelloReceived());
     }
 
     private DataListener<SocketIOModule> onChatReceived() {
@@ -44,6 +47,14 @@ public class SocketIOModule {
     private DisconnectListener onDisconnected() {
         return client -> {
             log.debug("Client[{}] - Disconnected from chat module.", client.getSessionId().toString());
+        };
+    }
+
+    private DataListener<SocketIOModule> onHelloReceived() {
+        System.out.println("world");
+        return (client, data, ackSender) -> {
+            log.debug("Client[{}] - Received chat message '{}'", client.getSessionId().toString(), data);
+           // namespace.getBroadcastOperations().sendEvent("world", data);
         };
     }
 
