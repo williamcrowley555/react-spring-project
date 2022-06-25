@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "intership-project-354404",
+  "private_key_id": "a83c47006367b2692971bc13fec8a1f1d82ef47a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDshEkQQBn8n94F\nI2PbOb5jXO4t2SmLKTXOmDdsuNgHiPHWXTN+vhzejEhK/S6gqtJH2Z7cHy2vye6i\nGOLgoaKjv3jyihWK0zzMPOewFk/MpH0gSzn/TeuzXxG/CVaktkY4AGAUe8xKBT9L\nxihxbuzrYJ0Rgm+10S3vXxd4NYexiwQ01QMPD01FueKNJ8hszJFzuEBO4tnivJ7y\nVeOrPdkLR9KCghUD3Pu5jvutv/B0bZ3xaQcMCcG/KxxUvfkhUR4jbzG4rQANRyGl\nu0MH9rf2CSzhkalR8pCtOYyO1XrwTZpC++B5WLxxYQXh3j4Lg24XG9yOyeDjMRJ8\nGySbLbFTAgMBAAECggEAEKoDYdc6XX/AC1mie/w2C1ctWuKdmDX3mg5EfW8KnYFL\nFMDtU2U+sHlu0IXFJsHSXgiZtkWmGOgf3aDmP1B0Hphrg58yBF18v6Ec692ukqsW\nO9PBCtlpHXK5091rEuDa0rBIFLliO+bhvkuAZvmbTLw6ZNTtXQCXfXGUPD59SIdx\nvSX2N0xPK4ygpoyK/vJjGp97Bf/eWSYc9wdehJ08Jkh3yDp6OGl+8NSJ1Ef7C9iX\nqkArlFmS2Q6KMsOEWj8aetUP9vc0TujnlvxhL5R81EgKrtGrPPOqX0L8NgSrBf9K\nFLnPN5uClps7tGv/fPPhZ2XJU9ZCRBgShK9qpHHRyQKBgQD8tnJ4I1Gj3cs2t6dd\npoOuH7MYB3Rk4sS/YAuGkWaipo4ma5/7qls7ji2mocGKICanu7PWsoqt4utH4Doc\nHGBQts/1uZKdcWHEQuSptw45UVNKt3BykgCT/LSpk7Z3rbMeTnzTsWK/MG5xYZEG\nCE7K8TDeZFeebElbJPKzNHgWawKBgQDvl+eNwv159MOqWuHvjpKfPuuJDYdxFx37\nneokjUFeK+tQ9fbkb+SjZ7OSCs/zE5HOjN7cxVI28or+fZFbWvXOrOBHOMfDNYMK\nLMHMhK5COakbMZEsoAQ1k4f+LLhVTdc3PBrQtxEBiz+ufpl0nNAaP4yJQtXv8sUW\nPdpHxcP6uQKBgQCn2l9J4Nu3Jfh2TaIDGDjajP+d9EWhROY93wOIzEcJvespJc9L\nj6mtcxBrX4F3x0clng0ji8+FE/YG9a5jQY3Pzr1uj2YM4WR4wZ20BHyUIapbNGCi\nGMv9f5pYEF7gOyV/+c37phTavMZ+1LlI8nezYGR/MtLnzTEkMvRph25EJQKBgQCE\nhkdkGEjQXlykK+Tw9rGPN+RcSIl0Ok8xUCWk1iUkC7L7czF/JY0X/VJMI4Lmdxqd\nXzoeb16MWhgbsCTonSV9jg34FyYXic/TnvILSBCDPRWWnxIn1tK9N79vDhlfxdCX\nEr3aWIgljHpK8Ge9IsfQ3PnFKpzfPi9ZoBjOvksqsQKBgQD34ajbreWRd+Z+kBHp\n4p/+Qg8qwyKlbsf66uMrHrc0WqEJlIp09cG6mt4z6zkImOE2iZkafoiN5sP750wI\na24Wd3BgqefCvR8OlvxLbSaNxOUs+6cmSkeMQtxqnVc/mLk4QcaQwkTxaXrFjC5T\nJAZ0pRBfNRMfTRzO8+fZXa3Vag==\n-----END PRIVATE KEY-----\n",
+  "client_email": "booking-service-404@intership-project-354404.iam.gserviceaccount.com",
+  "client_id": "105620341602097191415",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/booking-service-404%40intership-project-354404.iam.gserviceaccount.com"
+}
