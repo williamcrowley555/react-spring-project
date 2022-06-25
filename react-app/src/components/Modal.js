@@ -117,6 +117,8 @@ const Modal = ({ showModal, setShowModal, selectedData }) => {
       });
     setError(null);
     setSuccess(null);
+
+    
   }, [selectedData]);
 
   const submit = async (e) => {
@@ -125,20 +127,22 @@ const Modal = ({ showModal, setShowModal, selectedData }) => {
     if (button === "Add") {
       UserService.addUser(staffData)
         .then((res) => {
+          //socket.emit("updateUserList", staffData)
           setSuccess("Staff Added Successfully");
         })
         .catch((err) => {
           setError(err.response.data.message);
         });
     } else if (button === "Edit") {
-      console.log(
-        "Edit data: " +
-          staffData.firstName +
-          " " +
-          staffData.lastName +
-          " " +
-          staffData.email
-      );
+      //console.log(staffData)
+      UserService.updateUser(staffData)
+      .then((res) => {
+        //socket.emit("updateUserList", staffData)
+        setSuccess("Staff Updated Successfully");
+      })
+      .catch((err) => {
+        setError(err.response.data.message);
+      });
     }
 
     setShowModal(true);
@@ -208,37 +212,35 @@ const Modal = ({ showModal, setShowModal, selectedData }) => {
                     </div>
                   </div>
                 </div>
-
-                <input
-                  type="email"
-                  id="login"
-                  name="login"
-                  value={staffData.email}
-                  placeholder="Email"
-                  required
-                  //onChange={e => setEmail(e.target.value)}
-                  onChange={(e) =>
-                    setStaffData({
-                      ...staffData,
-                      email: e.target.value,
-                    })
-                  }
-                />
-
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                  required
-                  //onChange={e => setPassword(e.target.value)}
-                  onChange={(e) =>
-                    setStaffData({
-                      ...staffData,
-                      password: e.target.value,
-                    })
-                  }
-                />
+                
+                {button == "Add"
+                  && <>
+                      <input
+                      type="email"
+                      id="login"
+                      name="login"
+                      value={staffData.email}
+                      placeholder="Email"
+                      required
+                      //onChange={e => setEmail(e.target.value)}
+                      onChange={(e) => setStaffData({
+                        ...staffData,
+                        email: e.target.value,
+                      })} />
+                    
+                      <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Password"
+                        required
+                        //onChange={e => setPassword(e.target.value)}
+                        onChange={(e) => setStaffData({
+                          ...staffData,
+                          password: e.target.value,
+                        })} />
+                      </>
+                }
 
                 <button type="submit">{button}</button>
               </form>

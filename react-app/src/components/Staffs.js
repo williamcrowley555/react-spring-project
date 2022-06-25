@@ -25,8 +25,29 @@ const Staffs = () => {
       socket.emit("join-user-room-topic", "");
 
       socket.on("user-topic", (user) => {
-        setStaffList((prevStaffList) => [...prevStaffList, user]);
-      });
+          // setStaffList((prevStaffList) => 
+          // [...prevStaffList, user]);
+          
+          setStaffList((prevStaffList) => 
+          {
+            let found = false
+            let oldList = prevStaffList
+            let updatedList = prevStaffList.map(staff => {
+              if(staff.userId === user.userId)
+              {
+                found = true
+                staff = user
+              }
+              return staff;
+            })
+            if(found)
+              return updatedList;
+            else  
+              return [...oldList, user];
+            
+          })
+        }
+      );
     });
 
     getUserList("staff");

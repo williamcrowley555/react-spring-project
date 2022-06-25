@@ -1,5 +1,6 @@
 package com.william.createwebservice.ui.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.william.createwebservice.gcp_pubsub.igateway.UserOutboundGateway;
 import com.william.createwebservice.service.UserService;
@@ -103,13 +104,17 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "User not found",
                     content = @Content) })
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> updateUser(@RequestBody UserDetailsRequest userDetails, @PathVariable String id) {
+    public ResponseEntity<?> updateUser(@RequestBody UserDetailsRequest userDetails, @PathVariable String id) throws JsonProcessingException {
         ModelMapper modelMapper = new ModelMapper();
 
         UserDTO userDTO = modelMapper.map(userDetails, UserDTO.class);
 
         UserDTO updateUser = userService.updateUser(id, userDTO);
         UserResponse returnValue = modelMapper.map(updateUser, UserResponse.class);
+
+        System.out.println("Update user" + returnValue);
+
+        messagingGateway.sendToPubSub(new ObjectMapper().writeValueAsString(returnValue));
 
         return ResponseEntity.ok(returnValue);
     }
