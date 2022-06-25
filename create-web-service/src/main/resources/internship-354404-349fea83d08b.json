@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "internship-354404",
+  "private_key_id": "349fea83d08b02ba13463eb5d770ddf693a876a5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC1mc8JOeis2gs+\nUw9R/b80hslf2szBW/HIKrIlot6yGFHGkFOiRmi2eu8mahWD+lIJBwfAgv2iToS1\nbGQ5W9or/nIHvc0xM26FGbine5AUVfpqvZvnNDSI0Nj25sw6eUnuI9sMIuYqmKnr\nv3ArojQ42tyWlweWIooPr1SIERmcLPnHiyOqSSNWKt73BcGWaWMW64IHlwiW+Rdo\nNUyA0l4+XYcTMKvZYIzcl7iEPJKQXQ67ReRgK4xNYv4TYnkyV3UjA+FCgEwa0fZo\nUu10ZKU9kCi4odOpO92nwkvIvShhRsn18nu9ou0AcN99sFhaGo6tuBBpFMF5GQq+\n/ZrKvWofAgMBAAECggEAALztnMxRyBS2w6ZowzI0dbfaglDhpiOD2bFlZJvDK0Fy\ntkuIhiSicPi87LtfolgBFKz6ThZPhjpVdbtJXlD46QGGtcYCsHbUtdEYnAL3ie2e\nL+gyBarY+nlcIwdlwGhqcX+keJR9D6KWhjESo/VryuiwyXfhqFg0QW4P+jbqPg/l\npKTyXPcAIHGROH8EyoxklY3poqB/r7H6/OfhD4P/7MG6kJLgX0+F/tvu6PkGvzd4\nlQ1OeGCG3VtH4KUchP/Q3YoHa9ZWt1zlLlmnnNe32QAko6+3RhylCQ/G2Qplrkqz\nd390aoat1GtoQdJj2QCkuMF4OBhbXqnjFbsKtIvBsQKBgQDZhQrEs0ETLnCN9jy5\nBvhxsfcx9udQ3Xl38sz2UueNVNsZgYmih2qoT66fyxjJyl2M5wZNcT0j3qeA1t3O\n2DS5mx7prZAooxsN5u2jpeWkDaihti5nu/FQchJJ4uVu1CPXdPB532gYFZuuiFwz\n1S/oQReNSJNSzwjtOfisYQpAKQKBgQDVuhWroCyAMFoy0w7sx/mgYjvmdIXDtp1n\nf3e/iDZT3qDgn1N2t6CxPTMCtLceFjWHF/W3RwtVAA3tcq0yvH8jUdkmfSOC6dSA\nx7igzEF3C2M6Rv7VgRL7Eamvuv5wzId29WN94amrK6VxI3wwozP3bB9qO9OmEuhO\nloT+MDmBBwKBgQCy5IstqKsNZnUlG+1m0sfDYfUGP6SQSgWbU7GjqB1NjAtB19pl\nM+/RCu939eWmF+uGdX4mdMou1PB3sr7rXb9HIr9yuc7EzRf0AAdTPp41pRIaJSXX\nJKfbXGWUJKpC0u/DRCZ+ZPFMVYEbMoR6EIv8/IOtK5IWWbVivPm6c3iluQKBgQCc\nZh3xh7bI35lB0/z5/KSJXxliXSZ9v6aT1E121WCcIzAq76yOFXX7/ULU2hWeaLYm\n87uVsOF0BCQs/FwN4q5O1FhJuA1CgYZF7uEGmjHVwXmNbeKRrnCLVbOMqxQCy0je\nHlf+CCK25audjVAV73fZuT+L59fLkc55o+ASeou6BQKBgAdTUUTNnGD6R5CIXkEZ\n3KSFFXDLi9liOe0n0HOHwo6rdwd0yS2daVFCE9TPYMobMJcSQyy+y3bjQLurzU0Q\nxW2XpX7ILSm7yFCrG69NQ8gkspR/dPeRHkg3PHwDhz8XbS2uG6KQOAFDhi3frwCi\nzawUhufgRz9y/ubYkGiyzVtj\n-----END PRIVATE KEY-----\n",
+  "client_email": "booking-service@internship-354404.iam.gserviceaccount.com",
+  "client_id": "111927792322244479479",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/booking-service%40internship-354404.iam.gserviceaccount.com"
+}
