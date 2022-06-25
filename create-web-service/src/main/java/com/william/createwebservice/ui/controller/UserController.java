@@ -1,5 +1,6 @@
 package com.william.createwebservice.ui.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.william.createwebservice.gcp_pubsub.igateway.UserOutboundGateway;
 import com.william.createwebservice.service.UserService;
@@ -124,12 +125,13 @@ public class UserController {
                     content = @Content) })
     @DeleteMapping(path = "/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> deleteUser(@PathVariable String id) {
+    public ResponseEntity<?> deleteUser(@PathVariable String id) throws Exception {
         OperationStatusModel returnValue = new OperationStatusModel();
         returnValue.setOperationName(RequestOperationName.DELETE.name());
 
         userService.deleteUser(id);
         returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
+        messagingGateway.sendToPubSub(new ObjectMapper().writeValueAsString(returnValue));
 
         return ResponseEntity.ok(returnValue);
     }

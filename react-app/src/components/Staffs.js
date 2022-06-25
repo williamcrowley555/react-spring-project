@@ -56,6 +56,7 @@ const Staffs = () => {
     setSelectedData(record);
     console.log("Delete: " + record)
     // handle delete function
+    UserService.deleteUser(record.userId);
   };
 
   const columns = [
