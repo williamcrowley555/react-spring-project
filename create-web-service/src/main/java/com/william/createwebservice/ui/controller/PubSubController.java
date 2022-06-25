@@ -1,13 +1,7 @@
 package com.william.createwebservice.ui.controller;
 
-import com.google.api.core.ApiFuture;
-import com.google.cloud.pubsub.v1.Publisher;
-import com.google.protobuf.ByteString;
-import com.google.pubsub.v1.PubsubMessage;
-import com.google.pubsub.v1.TopicName;
 import com.william.createwebservice.CreateWebServiceApplication;
-import com.william.createwebservice.gcp_pubsub.PubSubPublisher;
-import com.william.createwebservice.gcp_pubsub.igateway.PubsubOutboundGateway;
+import com.william.createwebservice.gcp_pubsub.igateway.UserOutboundGateway;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 public class PubSubController {
@@ -33,12 +26,12 @@ public class PubSubController {
     private String topicId;
 
     @Autowired
-    private PubsubOutboundGateway messagingGateway;
+    private UserOutboundGateway messagingGateway;
 
     @PostMapping("/publishMessage")
     public ResponseEntity<?> publishMessage(@RequestParam("message") String message)
             throws IOException, ExecutionException, InterruptedException {
-        messagingGateway.sendToPubsub(message);
+        messagingGateway.sendToPubSub(message);
 
         return new ResponseEntity<>("Sending message: '" + message + "'", HttpStatus.OK);
     }

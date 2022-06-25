@@ -1,4 +1,4 @@
-package com.william.createwebservice.SocketIO;
+package com.william.createwebservice.socketIO;
 
 public class ChatMessage {
         private String userName;

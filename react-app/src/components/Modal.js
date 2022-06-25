@@ -117,8 +117,6 @@ const Modal = ({ showModal, setShowModal, selectedData }) => {
       });
     setError(null);
     setSuccess(null);
-
-    
   }, [selectedData]);
 
   const submit = async (e) => {
@@ -127,7 +125,6 @@ const Modal = ({ showModal, setShowModal, selectedData }) => {
     if (button === "Add") {
       UserService.addUser(staffData)
         .then((res) => {
-          socket.emit("updateUserList", staffData)
           setSuccess("Staff Added Successfully");
         })
         .catch((err) => {
