@@ -35,6 +35,8 @@ const Nav = ({ user, setUser }) => {
 
     if (localStorage.getItem("role") === "ROLE_ADMIN")
     buttons = (
+     
+      
       <ul className="navbar-nav me-auto mb-2 mb-md-0">
         <li className="nav-item">
           <Link
@@ -42,7 +44,7 @@ const Nav = ({ user, setUser }) => {
             className="nav-link active"
             aria-current="page"
           >
-            Admin Page
+            Admin {user.email}'s Page  
           </Link>
         </li>
 
@@ -56,6 +58,7 @@ const Nav = ({ user, setUser }) => {
             Logout
           </Link>
         </li>
+
       </ul>
     );
     
