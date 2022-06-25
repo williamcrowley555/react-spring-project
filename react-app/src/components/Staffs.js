@@ -3,6 +3,7 @@ import Table from "./Table";
 import UserService from "../services/UserService";
 import Modal from "./Modal";
 import socket from "../socketIO/socket";
+import Swal from 'sweetalert2'
 
 const Staffs = () => {
   const [staffList, setStaffList] = useState([
@@ -50,6 +51,13 @@ const Staffs = () => {
     setSelectedData(record);
     openModal("edit");
   };
+
+  const onDelete = (record) => {
+    setSelectedData(record);
+    console.log("Delete: " + record)
+    // handle delete function
+  };
+
   const columns = [
     {
       name: "First Name",
@@ -83,6 +91,28 @@ const Staffs = () => {
               }}
             >
               Edit
+            </button>
+
+            <button
+              className="btn btn-danger btn-sm m-2"
+              onClick={() => {
+                let selectedUserFullname = record.lastName + ' ' + record.firstName
+                Swal.fire({
+                  title: 'Confirm Delete',
+                  text: 'Do you really want to Delete user ' + selectedUserFullname,
+                  showCancelButton: true,  
+                  confirmButtonColor: '#3085d6',  
+                  cancelButtonColor: '#d33',  
+                  confirmButtonText: 'OK'  
+              }).then(result => {
+                  // when confirmed 
+                  onDelete(record)
+              }).catch(error => {
+                  // when canceled
+              });
+              }}
+            >
+              Delete
             </button>
           </>
         );
