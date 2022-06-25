@@ -4,9 +4,7 @@ import UserService from "../services/UserService";
 import Modal from "./Modal";
 import socket from "../socketIO/socket";
 
-
 const Staffs = () => {
-
   const [staffList, setStaffList] = useState([
     {
       userId: "",
@@ -18,22 +16,23 @@ const Staffs = () => {
 
   const [selectedData, setSelectedData] = useState({});
   const [showModal, setShowModal] = useState(false);
-
-  console.log(selectedData);
-  
+  const userRoom = console.log(selectedData);
 
   useEffect(() => {
-    let isUpdated = false
-    socket.on("updateUserList", (user) => {
-      setStaffList((prevStaffList) => [...prevStaffList, user]);
+    let isUpdated = false;
+    socket.on("connect", () => {
+      socket.emit("join-user-room-topic", "");
+
+      socket.on("user-topic", (user) => {
+        setStaffList((prevStaffList) => [...prevStaffList, user]);
+      });
     });
 
     getUserList("staff");
     return () => {
       isUpdated = true;
-    }
+    };
   }, []);
-
 
   const getUserList = (role) => {
     if (localStorage.getItem("userId") && localStorage.getItem("token")) {

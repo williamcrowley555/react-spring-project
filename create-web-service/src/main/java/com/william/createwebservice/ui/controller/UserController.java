@@ -1,5 +1,7 @@
 package com.william.createwebservice.ui.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.william.createwebservice.gcp_pubsub.igateway.UserOutboundGateway;
 import com.william.createwebservice.service.UserService;
 import com.william.createwebservice.shared.dto.UserDTO;
 import com.william.createwebservice.ui.model.request.UserDetailsRequest;
@@ -24,6 +26,9 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "api/users")
 public class UserController {
+
+    @Autowired
+    private UserOutboundGateway messagingGateway;
 
     @Autowired
     private UserService userService;
@@ -82,6 +87,8 @@ public class UserController {
 
         UserDTO createdUser = userService.createUser(userDTO);
         UserResponse returnValue = modelMapper.map(createdUser, UserResponse.class);
+
+        messagingGateway.sendToPubSub(new ObjectMapper().writeValueAsString(returnValue));
 
         return ResponseEntity.ok(returnValue);
     }

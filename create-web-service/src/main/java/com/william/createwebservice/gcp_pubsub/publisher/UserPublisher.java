@@ -1,4 +1,4 @@
-package com.william.createwebservice.gcp_pubsub;
+package com.william.createwebservice.gcp_pubsub.publisher;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.pubsub.v1.Publisher;
@@ -17,12 +17,8 @@ import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.messaging.MessageHandler;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-
 @Component
-public class PubSubPublisher {
+public class UserPublisher {
     private static final Log LOGGER = LogFactory.getLog(CreateWebServiceApplication.class);
 
     @Value("${spring.cloud.gcp.project-id}")
@@ -34,13 +30,13 @@ public class PubSubPublisher {
     // Create an outbound channel adapter to send messages from the input message channel to the
 // topic `topic-two`.
     @Bean
-    @ServiceActivator(inputChannel = "outputMessageChannel")
+    @ServiceActivator(inputChannel = "outputUserChannel")
     public MessageHandler messageSender(PubSubTemplate pubsubTemplate) {
         PubSubMessageHandler adapter = new PubSubMessageHandler(pubsubTemplate, topicId);
 
         adapter.setSuccessCallback(
                 ((ackId, message) ->
-                        LOGGER.info("Message: '" + message + "' was sent via the outbound channel adapter to topic-two!")));
+                        LOGGER.info("Message: '" + message + "' was sent via the outbound channel adapter to topic-user!")));
 
         adapter.setFailureCallback(
                 (cause, message) -> LOGGER.info("Error sending " + message + " due to " + cause));

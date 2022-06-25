@@ -1,4 +1,4 @@
-package com.william.createwebservice.SocketIO;
+package com.william.createwebservice.socketIO;
 
 import com.corundumstudio.socketio.SocketIOServer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServerCommandLineRunner implements CommandLineRunner {
 
-    static SocketIOServer server = null;
+    public static SocketIOServer server = null;
 
     @Autowired
     public ServerCommandLineRunner(SocketIOServer server) {
