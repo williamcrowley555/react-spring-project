@@ -17,43 +17,29 @@ const Staffs = () => {
 
   const [selectedData, setSelectedData] = useState({});
   const [showModal, setShowModal] = useState(false);
-  const userRoom = console.log(selectedData);
+  // const userRoom = console.log(selectedData);
 
   useEffect(() => {
     let isUpdated = false;
     socket.on("connect", () => {
-      socket.emit("join-user-room-topic", "");
+      socket.emit("join-user-room", "");
 
-      socket.on("user-topic", (user) => {
-          // setStaffList((prevStaffList) => 
-          // [...prevStaffList, user]);
-          
-          setStaffList((prevStaffList) => 
-          {
-            let found = false
-            let oldList = prevStaffList
-            let updatedList = prevStaffList.map(staff => {
-              if(staff.userId === user.userId)
-              {
-                found = true
-                staff = user
-              }
-              return staff;
-            })
-            if(found)
-              return updatedList;
-            else  
-              return [...oldList, user];
-            
-          })
+      socket.on("user-added", (user) => {
+          setStaffList((prevStaffList) => [...prevStaffList, user]);
         }
       );
+
+      socket.on("user-updated", (user) => {
+        setStaffList((prevStaffList) => prevStaffList.map((staff) => staff.userId === user.userId ? user : staff))
+      }
+    );
+
+      socket.on("user-deleted", (deletedUser) => {
+        setStaffList((prevStaffList) => prevStaffList.filter((staff) => staff.userId !== deletedUser.userId))
+      });
     });
 
     getUserList("staff");
-    return () => {
-      isUpdated = true;
-    };
   }, []);
 
   const getUserList = (role) => {

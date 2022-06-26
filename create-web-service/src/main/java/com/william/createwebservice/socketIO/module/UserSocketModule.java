@@ -16,8 +16,13 @@ import java.util.ArrayList;
 @Component
 public class UserSocketModule implements SocketIOModule{
     public static final String USER_ROOM = "user-room";
-    public static final String JOIN_USER_ROOM_TOPIC = "join-user-room-topic";
-    public static final String USER_TOPIC = "user-topic";
+
+//    TOPIC
+    public static final String TOPIC_JOIN_USER_ROOM = "join-user-room";
+    public static final String TOPIC_USER_ADDED = "user-added";
+    public static final String TOPIC_USER_UPDATED = "user-updated";
+    public static final String TOPIC_USER_DELETED = "user-deleted";
+
     private final SocketIONamespace namespace;
 
     @Autowired
@@ -25,7 +30,7 @@ public class UserSocketModule implements SocketIOModule{
         this.namespace = server.addNamespace("/chat");
         this.namespace.addConnectListener(onConnected());
         this.namespace.addDisconnectListener(onDisconnected());
-        this.namespace.addEventListener(JOIN_USER_ROOM_TOPIC, String.class, onJoinUserRoom());
+        this.namespace.addEventListener(TOPIC_JOIN_USER_ROOM, String.class, onJoinUserRoom());
     }
 
     @Override

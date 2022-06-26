@@ -2,7 +2,9 @@ package com.william.createwebservice.ui.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.william.createwebservice.gcp_pubsub.igateway.UserOutboundGateway;
+import com.william.createwebservice.gcp_pubsub.publisher.UserAddedPublisher;
+import com.william.createwebservice.gcp_pubsub.publisher.UserDeletedPublisher;
+import com.william.createwebservice.gcp_pubsub.publisher.UserUpdatedPublisher;
 import com.william.createwebservice.service.UserService;
 import com.william.createwebservice.shared.dto.UserDTO;
 import com.william.createwebservice.ui.model.request.UserDetailsRequest;
@@ -29,7 +31,14 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserOutboundGateway messagingGateway;
+    private UserDeletedPublisher userDeletedPublisher;
+
+    @Autowired
+    private UserUpdatedPublisher userUpdatedPublisher;
+
+    @Autowired
+    private UserAddedPublisher userAddedPublisher;
+
 
     @Autowired
     private UserService userService;
@@ -89,7 +98,7 @@ public class UserController {
         UserDTO createdUser = userService.createUser(userDTO);
         UserResponse returnValue = modelMapper.map(createdUser, UserResponse.class);
 
-        messagingGateway.sendToPubSub(new ObjectMapper().writeValueAsString(returnValue));
+        userAddedPublisher.publish(new ObjectMapper().writeValueAsString(returnValue));
 
         return ResponseEntity.ok(returnValue);
     }
@@ -114,7 +123,7 @@ public class UserController {
 
         System.out.println("Update user" + returnValue);
 
-        messagingGateway.sendToPubSub(new ObjectMapper().writeValueAsString(returnValue));
+        userUpdatedPublisher.publish(new ObjectMapper().writeValueAsString(returnValue));
 
         return ResponseEntity.ok(returnValue);
     }
@@ -135,7 +144,12 @@ public class UserController {
 
         userService.deleteUser(id);
         returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
-        messagingGateway.sendToPubSub(new ObjectMapper().writeValueAsString(returnValue));
+//        messagingGateway.sendToPubSub(new ObjectMapper().writeValueAsString(id));
+
+        UserResponse deletedUser = new UserResponse();
+        deletedUser.setUserId(id);
+
+        userDeletedPublisher.publish(new ObjectMapper().writeValueAsString(deletedUser));
 
         return ResponseEntity.ok(returnValue);
     }
